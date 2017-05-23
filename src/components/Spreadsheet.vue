@@ -26,12 +26,23 @@
         </tr>
         <tr>
           <th scope="row">State Appropriation</th>
-          <td><input
+          <td>
+          <input
             ref="input"
             v-bind:value="stateAppropriation2016"
-            v-on:input="updateValue($event.target.value)"
+            v-on:input="updateValue($event)"
           >
-          <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+          <!-- ID of slider element is used to tie to prop on parent to be updated -->
+          <input
+            id="stateAppropriation2016"
+            data-slider-id="stateAppropriation2016Slider"
+            class="slider"
+            type="text"
+            data-slider-min="200"
+            data-slider-max="500"
+            data-slider-step="1"
+            data-slider-value="350"
+          />
           </td>
           <td>{{ stateAppropriation2025 }}</td>
         </tr>
@@ -63,20 +74,21 @@ export default {
     'revenueEducationCost2025'
   ],
   mounted () {
-    console.log('mounted')
+    /* eslint no-unused-vars: 0 */
+    var self = this
+    var sliderValueHandler = function (event) {
+      self.$emit('update:' + event.currentTarget.id, event.value)
+    }
     $(document).ready(function () {
-      $('#ex1').slider(
-        {
-          formatter: function (value) {
-            return 'Current value: ' + value
-          }
-        }
-      )
+      $('input.slider')
+        .slider()
+        .on('slide', sliderValueHandler)
     })
   },
   methods: {
-    updateValue: function (value) {
-      this.$emit('update:stateAppropriation2016', value)
+    updateValue: function (event) {
+      console.log(event)
+      this.$emit('update:stateAppropriation2016', event.target.value)
     }
   }
 }
