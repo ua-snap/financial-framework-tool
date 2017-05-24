@@ -11,7 +11,13 @@
       <tbody>
         <tr>
           <th scope="row">Current Student Full-Time Equivalents (FTE)</th>
-          <td>{{ studentFte2016 }}</td>
+          <td><slider-input
+              id="studentFte2016"
+              min="5000"
+              max="25000"
+              :start="studentFte2016"
+              v-on:updated="updated"
+            ></slider-input></td>
           <td>{{ studentFte2025 }}</td>
         </tr>
         <tr>
@@ -31,7 +37,7 @@
               id="stateAppropriation2016"
               min="200"
               max="500"
-              start="352"
+              :start="stateAppropriation2016"
               v-on:updated="updated"
             ></slider-input>
           </td>
@@ -40,7 +46,7 @@
               id="stateAppropriation2025"
               min="200"
               max="500"
-              start="352"
+              :start="stateAppropriation2025"
               v-on:updated="updated"
             ></slider-input>
           </td>

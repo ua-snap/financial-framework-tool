@@ -19,7 +19,17 @@
       </div>
       <div class="col-md-6">
         <graph
+          :studentFte2016="studentFte2016"
+          :studentFte2025="studentFte2025"
+          :tuitionFeesPerStudent2016="tuitionFeesPerStudent2016"
+          :tuitionFeesPerStudent2025="tuitionFeesPerStudent2025"
+          :tuitionFees2016="tuitionFees2016"
+          :tuitionFees2025="tuitionFees2025"
           :stateAppropriation2016="stateAppropriation2016"
+          :stateAppropriation2025="stateAppropriation2025"
+          :revenueEducationCost2016="revenueEducationCost2016"
+          :revenueEducationCost2025="revenueEducationCost2025"
+          v-on:updated="updated"
         ></graph>
       </div>
     </div>
