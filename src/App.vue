@@ -14,6 +14,7 @@
           :stateAppropriation2025="stateAppropriation2025"
           :revenueEducationCost2016="revenueEducationCost2016"
           :revenueEducationCost2025="revenueEducationCost2025"
+          v-on:updated="updated"
         ></spreadsheet>
       </div>
       <div class="col-md-6">
@@ -51,6 +52,11 @@ export default {
     },
     revenueEducationCost2025: function () {
       return this.tuitionFees2025 + this.stateAppropriation2025
+    }
+  },
+  methods: {
+    updated: function (item, value) {
+      this[item] = value
     }
   }
 }
