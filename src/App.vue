@@ -6,12 +6,14 @@
         <spreadsheet
           :studentFte2016="studentFte2016"
           :studentFte2025="studentFte2025"
-          :tuitionFeesPerStudent2016="tuitionFeesPerStudent2016"
-          :tuitionFeesPerStudent2025="tuitionFeesPerStudent2025"
-          :tuitionFees2016="tuitionFees2016"
-          :tuitionFees2025="tuitionFees2025"
-          :stateAppropriation2016.sync="stateAppropriation2016"
-          :stateAppropriation2025="stateAppropriation2025"
+          :tuitionFeesFTE2016="tuitionFeesFTE2016"
+          :tuitionFeesFTE2025="tuitionFeesFTE2025"
+          :stateAppropriationFTE2016="stateAppropriationFTE2016"
+          :stateAppropriationFTE2025="stateAppropriationFTE2025"
+          :totalTuitionFees2016="totalTuitionFees2016"
+          :totalTuitionFees2025="totalTuitionFees2025"
+          :totalStateAppropriation2016="totalStateAppropriation2016"
+          :totalStateAppropriation2025="totalStateAppropriation2025"
           :revenueEducationCost2016="revenueEducationCost2016"
           :revenueEducationCost2025="revenueEducationCost2025"
           v-on:updated="updated"
@@ -21,15 +23,10 @@
         <graph
           :studentFte2016="studentFte2016"
           :studentFte2025="studentFte2025"
-          :tuitionFeesPerStudent2016="tuitionFeesPerStudent2016"
-          :tuitionFeesPerStudent2025="tuitionFeesPerStudent2025"
-          :tuitionFees2016="tuitionFees2016"
-          :tuitionFees2025="tuitionFees2025"
-          :stateAppropriation2016="stateAppropriation2016"
-          :stateAppropriation2025="stateAppropriation2025"
-          :revenueEducationCost2016="revenueEducationCost2016"
-          :revenueEducationCost2025="revenueEducationCost2025"
-          v-on:updated="updated"
+          :totalTuitionFees2016="totalTuitionFees2016"
+          :totalTuitionFees2025="totalTuitionFees2025"
+          :totalStateAppropriation2016="totalStateAppropriation2016"
+          :totalStateAppropriation2025="totalStateAppropriation2025"
         ></graph>
       </div>
     </div>
@@ -48,20 +45,30 @@ export default {
   },
   data: () => ({
     studentFte2016: 19229,
-    studentFte2025: 19229,
-    tuitionFeesPerStudent2016: 6086,
-    tuitionFeesPerStudent2025: 6086,
-    tuitionFees2016: 130.9,
-    tuitionFees2025: 130.9,
-    stateAppropriation2016: 350,
-    stateAppropriation2025: 350
+    studentFte2025: 26805,
+    tuitionFeesFTE2016: 6806,
+    tuitionFeesFTE2025: 10069,
+    stateAppropriationFTE2016: 16692,
+    stateAppropriationFTE2025: 11642
   }),
   computed: {
+    totalTuitionFees2016: function () {
+      return ((this.tuitionFeesFTE2016 * this.studentFte2016) / 1000000).toFixed(2)
+    },
+    totalTuitionFees2025: function () {
+      return ((this.tuitionFeesFTE2025 * this.studentFte2025) / 1000000).toFixed(2)
+    },
+    totalStateAppropriation2016: function () {
+      return ((this.stateAppropriationFTE2016 * this.studentFte2016) / 1000000).toFixed(2)
+    },
+    totalStateAppropriation2025: function () {
+      return ((this.stateAppropriationFTE2025 * this.studentFte2025) / 1000000).toFixed(2)
+    },
     revenueEducationCost2016: function () {
-      return parseFloat(this.tuitionFees2016) + parseFloat(this.stateAppropriation2016)
+      return (((this.tuitionFeesFTE2016 + this.stateAppropriationFTE2016) * this.studentFte2016) / 1000000).toFixed(2)
     },
     revenueEducationCost2025: function () {
-      return this.tuitionFees2025 + this.stateAppropriation2025
+      return (((this.tuitionFeesFTE2025 + this.stateAppropriationFTE2025) * this.studentFte2025) / 1000000).toFixed(2)
     }
   },
   methods: {

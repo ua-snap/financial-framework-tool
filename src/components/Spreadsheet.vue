@@ -11,45 +11,57 @@
       <tbody>
         <tr>
           <th scope="row">Current Student Full-Time Equivalents (FTE)</th>
-          <td><slider-input
-              id="studentFte2016"
+          <td>{{ studentFte2016 }}
+          </td>
+          <td>
+            <slider-input
+              id="studentFte2025"
+              min="10000"
+              max="35000"
+              :start="studentFte2025"
+              v-on:updated="updated"
+            ></slider-input>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Tuition and Fees per Student FTE</th>
+          <td>
+            {{ tuitionFeesFTE2016 }}
+          </td>
+          <td>
+            <slider-input
+              id="tuitionFeesFTE2025"
               min="5000"
-              max="25000"
-              :start="studentFte2016"
-              v-on:updated="updated"
-            ></slider-input></td>
-          <td>{{ studentFte2025 }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Tuition &amp; Fees Per Student ($)</th>
-          <td>{{ tuitionFeesPerStudent2016 }}</td>
-          <td>{{ tuitionFeesPerStudent2025 }}</td>
-        </tr>
-        <tr>
-          <th scope="row">Tuition and Fees</th>
-          <td>{{ tuitionFees2016 }}</td>
-          <td>{{ tuitionFees2025 }}</td>
-        </tr>
-        <tr>
-          <th scope="row">State Appropriation</th>
-          <td>
-            <slider-input
-              id="stateAppropriation2016"
-              min="200"
-              max="500"
-              :start="stateAppropriation2016"
+              max="15000"
+              :start="tuitionFeesFTE2025"
               v-on:updated="updated"
             ></slider-input>
           </td>
+        </tr>
+        <tr>
+          <th scope="row">State Appropriation per Student FTE</th>
+          <td>
+            {{ stateAppropriationFTE2016 }}
+          </td>
           <td>
             <slider-input
-              id="stateAppropriation2025"
-              min="200"
-              max="500"
-              :start="stateAppropriation2025"
+              id="stateAppropriationFTE2025"
+              min="8000"
+              max="20000"
+              :start="stateAppropriationFTE2025"
               v-on:updated="updated"
             ></slider-input>
           </td>
+        </tr>
+        <tr>
+          <th scope="row">Total Tuition &amp; Fees (Million $)</th>
+          <td>{{ totalTuitionFees2016 }}</td>
+          <td>{{ totalTuitionFees2025 }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Total State Appropriation (Million $)</th>
+          <td>{{ totalStateAppropriation2016 }}</td>
+          <td>{{ totalStateAppropriation2025 }}</td>
         </tr>
         <tr>
           <th scope="row">Revenue, Educational Cost (Million $)</th>
@@ -72,14 +84,16 @@ export default {
   props: [
     'studentFte2016',
     'studentFte2025',
-    'tuitionFeesPerStudent2016',
-    'tuitionFeesPerStudent2025',
-    'tuitionFees2016',
-    'tuitionFees2025',
-    'stateAppropriation2016',
-    'stateAppropriation2025',
+    'tuitionFeesFTE2016',
+    'tuitionFeesFTE2025',
+    'stateAppropriationFTE2016',
+    'stateAppropriationFTE2025',
+    'totalTuitionFees2016',
+    'totalTuitionFees2025',
     'revenueEducationCost2016',
-    'revenueEducationCost2025'
+    'revenueEducationCost2025',
+    'totalStateAppropriation2016',
+    'totalStateAppropriation2025'
   ],
   methods: {
     updated: function (item, value) {

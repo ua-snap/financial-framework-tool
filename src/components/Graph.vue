@@ -9,20 +9,18 @@
 export default {
   name: 'graph',
   props: [
+    'totalTuitionFees2016',
+    'totalTuitionFees2025',
+    'totalStateAppropriation2016',
+    'totalStateAppropriation2025',
     'studentFte2016',
-    'studentFte2025',
-    'tuitionFeesPerStudent2016',
-    'tuitionFeesPerStudent2025',
-    'tuitionFees2016',
-    'tuitionFees2025',
-    'stateAppropriation2016',
-    'stateAppropriation2025',
-    'revenueEducationCost2016',
-    'revenueEducationCost2025'
+    'studentFte2025'
   ],
   watch: {
-    stateAppropriation2016: function () { this.refreshPlot() },
-    stateAppropriation2025: function () { this.refreshPlot() }
+    totalTuitionFees2016: function () { this.refreshPlot() },
+    totalTuitionFees2025: function () { this.refreshPlot() },
+    totalStateAppropriation2016: function () { this.refreshPlot() },
+    totalStateAppropriation2025: function () { this.refreshPlot() }
   },
   mounted () {
     this.graph = document.getElementById('graph1')
@@ -37,22 +35,59 @@ export default {
     },
     getGraphLayout: function () {
       return {
-        barmode: 'stack'
+        barmode: 'stack',
+        yaxis: {
+          title: 'Million $',
+          range: [0, 650]
+        },
+        yaxis2: {
+          title: 'Enrollment (FTE)',
+          side: 'right',
+          overlaying: 'y',
+          range: [15000, 30000]
+        },
+        legend: {
+          x: 1.2,
+          font: {
+            family: 'Lato'
+          }
+        }
       }
     },
     getGraphData: function () {
       return [
         {
           x: ['2016', '2025'],
-          y: [this.stateAppropriation2016, this.stateAppropriation2025],
+          y: [this.totalStateAppropriation2016, this.totalStateAppropriation2025],
           name: 'State Appropriations',
-          type: 'bar'
+          type: 'bar',
+          marker: {
+            color: '#236192'
+          }
         },
         {
           x: ['2016', '2025'],
-          y: [this.revenueEducationCost2016, this.revenueEducationCost2025],
-          name: 'Revenue',
-          type: 'bar'
+          y: [this.totalTuitionFees2016, this.totalTuitionFees2025],
+          name: 'Tuition &amp; Fees',
+          type: 'bar',
+          marker: {
+            color: '#FFCD00'
+          }
+        },
+        {
+          x: ['2016', '2025'],
+          y: [this.studentFte2016, this.studentFte2025],
+          name: 'Enrollment (FTE)',
+          yaxis: 'y2',
+          type: 'scatter',
+          line: {
+            color: '#333',
+            width: 3
+          },
+          marker: {
+            color: '#000',
+            size: 7
+          }
         }
       ]
     },
@@ -66,7 +101,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  #graph1 {
-    height: 400px;
-  }
+
 </style>
