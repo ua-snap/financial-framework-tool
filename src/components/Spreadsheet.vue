@@ -56,17 +56,32 @@
         <tr>
           <th scope="row">Total Tuition &amp; Fees (Million $)</th>
           <td>{{ totalTuitionFees2016 }}</td>
-          <td>{{ totalTuitionFees2025 }}</td>
+          <td>
+            {{ totalTuitionFees2025 }}
+            <percent-change
+              :value="totalTuitionFees2025"
+            ></percent-change>
+          </td>
         </tr>
         <tr>
           <th scope="row">Total State Appropriation (Million $)</th>
           <td>{{ totalStateAppropriation2016 }}</td>
-          <td>{{ totalStateAppropriation2025 }}</td>
+          <td>
+            {{ totalStateAppropriation2025 }}
+            <percent-change
+              :value="totalStateAppropriation2025"
+            ></percent-change>
+          </td>
         </tr>
         <tr>
           <th scope="row">Revenue, Educational Cost (Million $)</th>
           <td>{{ revenueEducationCost2016 }}</td>
-          <td>{{ revenueEducationCost2025 }}</td>
+          <td>
+            {{ revenueEducationCost2025 }}
+            <percent-change
+              :value="revenueEducationCost2025"
+            ></percent-change>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -75,11 +90,13 @@
 
 <script>
 import SliderInput from './SliderInput'
+import PercentChange from './PercentChange'
 
 export default {
   name: 'spreadsheet',
   components: {
-    SliderInput
+    SliderInput,
+    PercentChange
   },
   props: [
     'studentFte2016',
