@@ -45,15 +45,18 @@ export default {
   },
   data: () => ({
     studentFte2016: 19229,
-//    studentFte2025: 26805,
     tuitionFeesFTE2016: 6806,
-    tuitionFeesFTE2025: 10069,
-    stateAppropriationFTE2016: 16692,
-    stateAppropriationFTE2025: 11642
+    stateAppropriationFTE2016: 16692
   }),
   computed: {
-    studentFte2025: function () {
+    studentFte2025 () {
       return this.$store.state.studentFte2025
+    },
+    tuitionFeesFTE2025 () {
+      return this.$store.state.tuitionFeesFTE2025
+    },
+    stateAppropriationFTE2025 () {
+      return this.$store.state.stateAppropriationFTE2025
     },
     totalTuitionFees2016: function () {
       return ((this.tuitionFeesFTE2016 * this.studentFte2016) / 1000000).toFixed(2)
@@ -76,11 +79,10 @@ export default {
   },
   methods: {
     updated: function (item, value) {
-      if (item === 'studentFte2025') {
-        this.$store.commit('update', value)
-      } else {
-        this[item] = value
-      }
+      this.$store.commit('update', {
+        field: item,
+        value: value
+      })
     }
   }
 }
