@@ -7,7 +7,7 @@ export default new VueRouter({
   routes: [
     {
       path: '/:studentFte2025/:tuitionFeesFTE2025/:stateAppropriationFTE2025',
-      name: 'root'
+      name: 'edited'
     }
   ]
 })

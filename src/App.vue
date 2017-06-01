@@ -36,6 +36,7 @@
 <script>
 import Spreadsheet from './components/Spreadsheet'
 import Graph from './components/Graph'
+import _ from 'lodash'
 
 export default {
   name: 'app',
@@ -46,9 +47,11 @@ export default {
   // Here, we want to initialize the state of the Store
   // from parameters present in the URL (if present).
   created () {
-    this.setStoreValue('studentFte2025', parseInt(this.$store.state.route.params.studentFte2025))
-    this.setStoreValue('tuitionFeesFTE2025', parseInt(this.$store.state.route.params.tuitionFeesFTE2025))
-    this.setStoreValue('stateAppropriationFTE2025', parseInt(this.$store.state.route.params.stateAppropriationFTE2025))
+    this.restoreValuesFromUrl([
+      'studentFte2025',
+      'tuitionFeesFTE2025',
+      'stateAppropriationFTE2025'
+    ])
   },
   data: () => ({
     studentFte2016: 19229,
@@ -85,16 +88,32 @@ export default {
     }
   },
   methods: {
+    restoreValuesFromUrl (items) {
+      _.each(items, (item) => {
+        if (this.$route.params[item]) {
+          this.setStoreValue(item, this.validate(item, this.$store.state.route.params[item]))
+        }
+      })
+    },
     setStoreValue (item, value) {
       this.$store.commit('update', {
         field: item,
         value: value
       })
     },
+    // Basic validation to check type safety,
+    // can add min/max if needed later.  Sets to 0 if invalid.
+    validate (item, value) {
+      var validated = parseInt(value)
+      if (_.isNaN(validated) === true) {
+        validated = 0
+      }
+      return validated
+    },
     updated: function (item, value) {
       this.setStoreValue(item, value)
       this.$router.push({
-        name: 'root',
+        name: 'edited',
         params: {
           studentFte2025: this.studentFte2025,
           tuitionFeesFTE2025: this.tuitionFeesFTE2025,
