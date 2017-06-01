@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div class="container">
     <h1>UA Financial Framework Visualization Tool</h1>
     <div class="row">
       <div class="col-md-6">
@@ -43,6 +43,13 @@ export default {
     Spreadsheet,
     Graph
   },
+  // Here, we want to initialize the state of the Store
+  // from parameters present in the URL (if present).
+  created () {
+    this.setStoreValue('studentFte2025', parseInt(this.$store.state.route.params.studentFte2025))
+    this.setStoreValue('tuitionFeesFTE2025', parseInt(this.$store.state.route.params.tuitionFeesFTE2025))
+    this.setStoreValue('stateAppropriationFTE2025', parseInt(this.$store.state.route.params.stateAppropriationFTE2025))
+  },
   data: () => ({
     studentFte2016: 19229,
     tuitionFeesFTE2016: 6806,
@@ -78,10 +85,21 @@ export default {
     }
   },
   methods: {
-    updated: function (item, value) {
+    setStoreValue (item, value) {
       this.$store.commit('update', {
         field: item,
         value: value
+      })
+    },
+    updated: function (item, value) {
+      this.setStoreValue(item, value)
+      this.$router.push({
+        name: 'root',
+        params: {
+          studentFte2025: this.studentFte2025,
+          tuitionFeesFTE2025: this.tuitionFeesFTE2025,
+          stateAppropriationFTE2025: this.stateAppropriationFTE2025
+        }
       })
     }
   }
