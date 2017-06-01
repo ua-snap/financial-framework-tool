@@ -32,7 +32,9 @@ export default {
   },
   mounted () {
     var self = this
-    self.slider = new Slider('#' + self.id)
+    self.slider = new Slider('#' + self.id, {
+      ticks: [this.min, this.start, this.max]
+    })
     self.slider.on('slide', function (value) {
       self.value = value
       self.$emit('updated', self.id, value)
