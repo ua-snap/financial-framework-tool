@@ -6,10 +6,16 @@
         <spreadsheet
           :studentFte2016="studentFte2016"
           :studentFte2025="studentFte2025"
+          :studentFte2025min="studentFte2025min"
+          :studentFte2025max="studentFte2025max"
           :tuitionFeesFTE2016="tuitionFeesFTE2016"
           :tuitionFeesFTE2025="tuitionFeesFTE2025"
+          :tuitionFeesFTE2025min="tuitionFeesFTE2025min"
+          :tuitionFeesFTE2025max="tuitionFeesFTE2025max"
           :stateAppropriationFTE2016="stateAppropriationFTE2016"
           :stateAppropriationFTE2025="stateAppropriationFTE2025"
+          :stateAppropriationFTE2025min="stateAppropriationFTE2025min"
+          :stateAppropriationFTE2025max="stateAppropriationFTE2025max"
           :totalTuitionFees2016="totalTuitionFees2016"
           :totalTuitionFees2025="totalTuitionFees2025"
           :totalStateAppropriation2016="totalStateAppropriation2016"
@@ -62,11 +68,29 @@ export default {
     studentFte2025 () {
       return this.$store.state.studentFte2025
     },
+    studentFte2025min () {
+      return this.$store.state.studentFte2025min
+    },
+    studentFte2025max () {
+      return this.$store.state.studentFte2025max
+    },
     tuitionFeesFTE2025 () {
       return this.$store.state.tuitionFeesFTE2025
     },
+    tuitionFeesFTE2025min () {
+      return this.$store.state.tuitionFeesFTE2025min
+    },
+    tuitionFeesFTE2025max () {
+      return this.$store.state.tuitionFeesFTE2025max
+    },
     stateAppropriationFTE2025 () {
       return this.$store.state.stateAppropriationFTE2025
+    },
+    stateAppropriationFTE2025min () {
+      return this.$store.state.stateAppropriationFTE2025min
+    },
+    stateAppropriationFTE2025max () {
+      return this.$store.state.stateAppropriationFTE2025max
     },
     totalTuitionFees2016: function () {
       return ((this.tuitionFeesFTE2016 * this.studentFte2016) / 1000000).toFixed(2)
@@ -107,6 +131,36 @@ export default {
       var validated = parseInt(value)
       if (_.isNaN(validated) === true) {
         validated = 0
+      }
+      // If validated was not a valid number, we will set the value
+      // to the item's minimum value.
+      switch (item) {
+        case 'studentFte2025':
+          if (validated >= this.studentFte2025min && validated <= this.studentFte2025max) {
+            return validated
+          } else if (validated < this.studentFte2025min) {
+            return this.studentFte2025min
+          } else {
+            return this.studentFte2025max
+          }
+        case 'tuitionFeesFTE2025':
+          if (validated >= this.tuitionFeesFTE2025min && validated <= this.tuitionFeesFTE2025max) {
+            return validated
+          } else if (validated < this.tuitionFeesFTE2025min) {
+            return this.tuitionFeesFTE2025min
+          } else {
+            return this.tuitionFeesFTE2025max
+          }
+        case 'stateAppropriationFTE2025':
+          if (validated >= this.stateAppropriationFTE2025min && validated <= this.stateAppropriationFTE2025max) {
+            return validated
+          } else if (validated < this.stateAppropriationFTE2025min) {
+            return this.stateAppropriationFTE2025min
+          } else {
+            return this.stateAppropriationFTE2025max
+          }
+        default:
+          break
       }
       return validated
     },

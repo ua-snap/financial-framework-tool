@@ -16,8 +16,8 @@
           <td>
             <slider-input
               id="studentFte2025"
-              min="10000"
-              max="35000"
+              :min="studentFte2025min"
+              :max="studentFte2025max"
               :start="studentFte2025"
               v-on:updated="updated"
             ></slider-input>
@@ -31,8 +31,8 @@
           <td>
             <slider-input
               id="tuitionFeesFTE2025"
-              min="5000"
-              max="15000"
+              :min="tuitionFeesFTE2025min"
+              :max="tuitionFeesFTE2025max"
               :start="tuitionFeesFTE2025"
               v-on:updated="updated"
             ></slider-input>
@@ -46,8 +46,8 @@
           <td>
             <slider-input
               id="stateAppropriationFTE2025"
-              min="8000"
-              max="20000"
+              :min="stateAppropriationFTE2025min"
+              :max="stateAppropriationFTE2025max"
               :start="stateAppropriationFTE2025"
               v-on:updated="updated"
             ></slider-input>
@@ -101,10 +101,16 @@ export default {
   props: [
     'studentFte2016',
     'studentFte2025',
+    'studentFte2025min',
+    'studentFte2025max',
     'tuitionFeesFTE2016',
     'tuitionFeesFTE2025',
+    'tuitionFeesFTE2025min',
+    'tuitionFeesFTE2025max',
     'stateAppropriationFTE2016',
     'stateAppropriationFTE2025',
+    'stateAppropriationFTE2025min',
+    'stateAppropriationFTE2025max',
     'totalTuitionFees2016',
     'totalTuitionFees2025',
     'revenueEducationCost2016',
