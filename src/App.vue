@@ -1,15 +1,21 @@
 <template>
-  <div id="app" class="container">
+  <div class="container">
     <h1>UA Financial Framework Visualization Tool</h1>
     <div class="row">
       <div class="col-md-6">
         <spreadsheet
           :studentFte2016="studentFte2016"
           :studentFte2025="studentFte2025"
+          :studentFte2025min="studentFte2025min"
+          :studentFte2025max="studentFte2025max"
           :tuitionFeesFTE2016="tuitionFeesFTE2016"
           :tuitionFeesFTE2025="tuitionFeesFTE2025"
+          :tuitionFeesFTE2025min="tuitionFeesFTE2025min"
+          :tuitionFeesFTE2025max="tuitionFeesFTE2025max"
           :stateAppropriationFTE2016="stateAppropriationFTE2016"
           :stateAppropriationFTE2025="stateAppropriationFTE2025"
+          :stateAppropriationFTE2025min="stateAppropriationFTE2025min"
+          :stateAppropriationFTE2025max="stateAppropriationFTE2025max"
           :totalTuitionFees2016="totalTuitionFees2016"
           :totalTuitionFees2025="totalTuitionFees2025"
           :totalStateAppropriation2016="totalStateAppropriation2016"
@@ -36,6 +42,7 @@
 <script>
 import Spreadsheet from './components/Spreadsheet'
 import Graph from './components/Graph'
+import _ from 'lodash'
 
 export default {
   name: 'app',
@@ -43,15 +50,48 @@ export default {
     Spreadsheet,
     Graph
   },
+  // Here, we want to initialize the state of the Store
+  // from parameters present in the URL (if present).
+  created () {
+    this.restoreValuesFromUrl([
+      'studentFte2025',
+      'tuitionFeesFTE2025',
+      'stateAppropriationFTE2025'
+    ])
+  },
   data: () => ({
     studentFte2016: 19229,
-    studentFte2025: 26805,
     tuitionFeesFTE2016: 6806,
-    tuitionFeesFTE2025: 10069,
-    stateAppropriationFTE2016: 16692,
-    stateAppropriationFTE2025: 11642
+    stateAppropriationFTE2016: 16692
   }),
   computed: {
+    studentFte2025 () {
+      return this.$store.state.studentFte2025
+    },
+    studentFte2025min () {
+      return this.$store.state.studentFte2025min
+    },
+    studentFte2025max () {
+      return this.$store.state.studentFte2025max
+    },
+    tuitionFeesFTE2025 () {
+      return this.$store.state.tuitionFeesFTE2025
+    },
+    tuitionFeesFTE2025min () {
+      return this.$store.state.tuitionFeesFTE2025min
+    },
+    tuitionFeesFTE2025max () {
+      return this.$store.state.tuitionFeesFTE2025max
+    },
+    stateAppropriationFTE2025 () {
+      return this.$store.state.stateAppropriationFTE2025
+    },
+    stateAppropriationFTE2025min () {
+      return this.$store.state.stateAppropriationFTE2025min
+    },
+    stateAppropriationFTE2025max () {
+      return this.$store.state.stateAppropriationFTE2025max
+    },
     totalTuitionFees2016: function () {
       return ((this.tuitionFeesFTE2016 * this.studentFte2016) / 1000000).toFixed(2)
     },
@@ -72,8 +112,68 @@ export default {
     }
   },
   methods: {
+    restoreValuesFromUrl (items) {
+      _.each(items, (item) => {
+        if (this.$route.params[item]) {
+          this.setStoreValue(item, this.validate(item, this.$store.state.route.params[item]))
+        }
+      })
+    },
+    setStoreValue (item, value) {
+      this.$store.commit('update', {
+        field: item,
+        value: value
+      })
+    },
+    // Basic validation to check type safety,
+    // can add min/max if needed later.  Sets to 0 if invalid.
+    validate (item, value) {
+      var validated = parseInt(value)
+      if (_.isNaN(validated) === true) {
+        validated = 0
+      }
+      // If validated was not a valid number, we will set the value
+      // to the item's minimum value.
+      switch (item) {
+        case 'studentFte2025':
+          if (validated >= this.studentFte2025min && validated <= this.studentFte2025max) {
+            return validated
+          } else if (validated < this.studentFte2025min) {
+            return this.studentFte2025min
+          } else {
+            return this.studentFte2025max
+          }
+        case 'tuitionFeesFTE2025':
+          if (validated >= this.tuitionFeesFTE2025min && validated <= this.tuitionFeesFTE2025max) {
+            return validated
+          } else if (validated < this.tuitionFeesFTE2025min) {
+            return this.tuitionFeesFTE2025min
+          } else {
+            return this.tuitionFeesFTE2025max
+          }
+        case 'stateAppropriationFTE2025':
+          if (validated >= this.stateAppropriationFTE2025min && validated <= this.stateAppropriationFTE2025max) {
+            return validated
+          } else if (validated < this.stateAppropriationFTE2025min) {
+            return this.stateAppropriationFTE2025min
+          } else {
+            return this.stateAppropriationFTE2025max
+          }
+        default:
+          break
+      }
+      return validated
+    },
     updated: function (item, value) {
-      this[item] = value
+      this.setStoreValue(item, value)
+      this.$router.push({
+        name: 'edited',
+        params: {
+          studentFte2025: this.studentFte2025,
+          tuitionFeesFTE2025: this.tuitionFeesFTE2025,
+          stateAppropriationFTE2025: this.stateAppropriationFTE2025
+        }
+      })
     }
   }
 }

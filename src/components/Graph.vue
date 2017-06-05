@@ -38,13 +38,13 @@ export default {
         barmode: 'stack',
         yaxis: {
           title: 'Million $',
-          range: [0, 650]
+          range: [0, 1250]
         },
         yaxis2: {
           title: 'Enrollment (FTE)',
           side: 'right',
           overlaying: 'y',
-          range: [15000, 30000]
+          range: [10000, 40000]
         },
         legend: {
           x: 1.2,
