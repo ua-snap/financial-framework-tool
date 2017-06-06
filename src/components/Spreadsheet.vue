@@ -18,7 +18,8 @@
               id="studentFte2025"
               :min="studentFte2025min"
               :max="studentFte2025max"
-              :start="studentFte2025"
+              :start="studentFte2025start"
+              :currvalue="studentFte2025"
               v-on:updated="updated"
             ></slider-input>
           </td>
@@ -33,7 +34,8 @@
               id="tuitionFeesFTE2025"
               :min="tuitionFeesFTE2025min"
               :max="tuitionFeesFTE2025max"
-              :start="tuitionFeesFTE2025"
+              :start="tuitionFeesFTE2025start"
+              :currvalue="tuitionFeesFTE2025"
               v-on:updated="updated"
             ></slider-input>
           </td>
@@ -48,7 +50,8 @@
               id="stateAppropriationFTE2025"
               :min="stateAppropriationFTE2025min"
               :max="stateAppropriationFTE2025max"
-              :start="stateAppropriationFTE2025"
+              :start="stateAppropriationFTE2025start"
+              :currvalue="stateAppropriationFTE2025"
               v-on:updated="updated"
             ></slider-input>
           </td>
@@ -101,14 +104,17 @@ export default {
   props: [
     'studentFte2016',
     'studentFte2025',
+    'studentFte2025start',
     'studentFte2025min',
     'studentFte2025max',
     'tuitionFeesFTE2016',
     'tuitionFeesFTE2025',
+    'tuitionFeesFTE2025start',
     'tuitionFeesFTE2025min',
     'tuitionFeesFTE2025max',
     'stateAppropriationFTE2016',
     'stateAppropriationFTE2025',
+    'stateAppropriationFTE2025start',
     'stateAppropriationFTE2025min',
     'stateAppropriationFTE2025max',
     'totalTuitionFees2016',

@@ -6,14 +6,17 @@
         <spreadsheet
           :studentFte2016="studentFte2016"
           :studentFte2025="studentFte2025"
+          :studentFte2025start="studentFte2025start"
           :studentFte2025min="studentFte2025min"
           :studentFte2025max="studentFte2025max"
           :tuitionFeesFTE2016="tuitionFeesFTE2016"
           :tuitionFeesFTE2025="tuitionFeesFTE2025"
+          :tuitionFeesFTE2025start="tuitionFeesFTE2025start"
           :tuitionFeesFTE2025min="tuitionFeesFTE2025min"
           :tuitionFeesFTE2025max="tuitionFeesFTE2025max"
           :stateAppropriationFTE2016="stateAppropriationFTE2016"
           :stateAppropriationFTE2025="stateAppropriationFTE2025"
+          :stateAppropriationFTE2025start="stateAppropriationFTE2025start"
           :stateAppropriationFTE2025min="stateAppropriationFTE2025min"
           :stateAppropriationFTE2025max="stateAppropriationFTE2025max"
           :totalTuitionFees2016="totalTuitionFees2016"
@@ -68,6 +71,9 @@ export default {
     studentFte2025 () {
       return this.$store.state.studentFte2025
     },
+    studentFte2025start () {
+      return this.$store.state.studentFte2025start
+    },
     studentFte2025min () {
       return this.$store.state.studentFte2025min
     },
@@ -77,6 +83,9 @@ export default {
     tuitionFeesFTE2025 () {
       return this.$store.state.tuitionFeesFTE2025
     },
+    tuitionFeesFTE2025start () {
+      return this.$store.state.tuitionFeesFTE2025start
+    },
     tuitionFeesFTE2025min () {
       return this.$store.state.tuitionFeesFTE2025min
     },
@@ -85,6 +94,9 @@ export default {
     },
     stateAppropriationFTE2025 () {
       return this.$store.state.stateAppropriationFTE2025
+    },
+    stateAppropriationFTE2025start () {
+      return this.$store.state.stateAppropriationFTE2025start
     },
     stateAppropriationFTE2025min () {
       return this.$store.state.stateAppropriationFTE2025min
