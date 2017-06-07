@@ -63,6 +63,7 @@
             {{ totalTuitionFees2025 }}
             <percent-change
               :value="totalTuitionFees2025"
+              :start="totalTuitionFees2025start"
             ></percent-change>
           </td>
         </tr>
@@ -73,6 +74,7 @@
             {{ totalStateAppropriation2025 }}
             <percent-change
               :value="totalStateAppropriation2025"
+              :start="totalStateAppropriation2025start"
             ></percent-change>
           </td>
         </tr>
@@ -83,6 +85,7 @@
             {{ revenueEducationCost2025 }}
             <percent-change
               :value="revenueEducationCost2025"
+              :start="revenueEducationCost2025start"
             ></percent-change>
           </td>
         </tr>
@@ -119,10 +122,13 @@ export default {
     'stateAppropriationFTE2025max',
     'totalTuitionFees2016',
     'totalTuitionFees2025',
+    'totalTuitionFees2025start',
     'revenueEducationCost2016',
     'revenueEducationCost2025',
+    'revenueEducationCost2025start',
     'totalStateAppropriation2016',
-    'totalStateAppropriation2025'
+    'totalStateAppropriation2025',
+    'totalStateAppropriation2025start'
   ],
   methods: {
     updated: function (item, value) {

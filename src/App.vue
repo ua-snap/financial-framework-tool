@@ -21,10 +21,13 @@
           :stateAppropriationFTE2025max="stateAppropriationFTE2025max"
           :totalTuitionFees2016="totalTuitionFees2016"
           :totalTuitionFees2025="totalTuitionFees2025"
+          :totalTuitionFees2025start="totalTuitionFees2025start"
           :totalStateAppropriation2016="totalStateAppropriation2016"
           :totalStateAppropriation2025="totalStateAppropriation2025"
+          :totalStateAppropriation2025start="totalStateAppropriation2025start"
           :revenueEducationCost2016="revenueEducationCost2016"
           :revenueEducationCost2025="revenueEducationCost2025"
+          :revenueEducationCost2025start="revenueEducationCost2025start"
           v-on:updated="updated"
         ></spreadsheet>
       </div>
@@ -92,17 +95,26 @@ export default {
     totalTuitionFees2025: function () {
       return ((this.tuitionFeesFTE2025 * this.studentFte2025) / 1000000).toFixed(2)
     },
+    totalTuitionFees2025start: function () {
+      return ((this.tuitionFeesFTE2025start * this.studentFte2025start) / 1000000).toFixed(2)
+    },
     totalStateAppropriation2016: function () {
       return ((this.stateAppropriationFTE2016 * this.studentFte2016) / 1000000).toFixed(2)
     },
     totalStateAppropriation2025: function () {
       return ((this.stateAppropriationFTE2025 * this.studentFte2025) / 1000000).toFixed(2)
     },
+    totalStateAppropriation2025start: function () {
+      return ((this.stateAppropriationFTE2025start * this.studentFte2025start) / 1000000).toFixed(2)
+    },
     revenueEducationCost2016: function () {
       return (((this.tuitionFeesFTE2016 + this.stateAppropriationFTE2016) * this.studentFte2016) / 1000000).toFixed(2)
     },
     revenueEducationCost2025: function () {
       return (((this.tuitionFeesFTE2025 + this.stateAppropriationFTE2025) * this.studentFte2025) / 1000000).toFixed(2)
+    },
+    revenueEducationCost2025start: function () {
+      return (((this.tuitionFeesFTE2025start + this.stateAppropriationFTE2025start) * this.studentFte2025start) / 1000000).toFixed(2)
     }
   },
   methods: {
