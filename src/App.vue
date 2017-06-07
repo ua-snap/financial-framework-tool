@@ -64,45 +64,27 @@ export default {
   },
   data: () => ({
     studentFte2016: 19229,
+    studentFte2025start: 26805,
+    studentFte2025min: 10000,
+    studentFte2025max: 35000,
     tuitionFeesFTE2016: 6806,
-    stateAppropriationFTE2016: 16692
+    tuitionFeesFTE2025start: 10089,
+    tuitionFeesFTE2025min: 5000,
+    tuitionFeesFTE2025max: 15000,
+    stateAppropriationFTE2016: 16692,
+    stateAppropriationFTE2025start: 11642,
+    stateAppropriationFTE2025min: 8000,
+    stateAppropriationFTE2025max: 20000
   }),
   computed: {
     studentFte2025 () {
       return this.$store.state.studentFte2025
     },
-    studentFte2025start () {
-      return this.$store.state.studentFte2025start
-    },
-    studentFte2025min () {
-      return this.$store.state.studentFte2025min
-    },
-    studentFte2025max () {
-      return this.$store.state.studentFte2025max
-    },
     tuitionFeesFTE2025 () {
       return this.$store.state.tuitionFeesFTE2025
     },
-    tuitionFeesFTE2025start () {
-      return this.$store.state.tuitionFeesFTE2025start
-    },
-    tuitionFeesFTE2025min () {
-      return this.$store.state.tuitionFeesFTE2025min
-    },
-    tuitionFeesFTE2025max () {
-      return this.$store.state.tuitionFeesFTE2025max
-    },
     stateAppropriationFTE2025 () {
       return this.$store.state.stateAppropriationFTE2025
-    },
-    stateAppropriationFTE2025start () {
-      return this.$store.state.stateAppropriationFTE2025start
-    },
-    stateAppropriationFTE2025min () {
-      return this.$store.state.stateAppropriationFTE2025min
-    },
-    stateAppropriationFTE2025max () {
-      return this.$store.state.stateAppropriationFTE2025max
     },
     totalTuitionFees2016: function () {
       return ((this.tuitionFeesFTE2016 * this.studentFte2016) / 1000000).toFixed(2)
@@ -125,9 +107,14 @@ export default {
   },
   methods: {
     restoreValuesFromUrl (items) {
+      console.log(items)
       _.each(items, (item) => {
         if (this.$route.params[item]) {
-          this.setStoreValue(item, this.validate(item, this.$store.state.route.params[item]))
+          // console.log(item)
+          // console.log(this.$store.state.route.params[items])
+          // var value = this.validate(item, this.$store.state.route.params[items])
+          // this.setStoreValue(item, this.validate(item, this.$store.state.route.params[items]))
+          this.updated(item, this.validate(item, this.$store.state.route.params[items]))
         }
       })
     },
@@ -141,6 +128,7 @@ export default {
     // can add min/max if needed later.  Sets to 0 if invalid.
     validate (item, value) {
       var validated = parseInt(value)
+      console.log(validated)
       if (_.isNaN(validated) === true) {
         validated = 0
       }
