@@ -48,6 +48,7 @@ export default {
       self.value = value
       self.$emit('updated', self.id, value)
     })
+    self.slider.setValue(this.value)
   },
   validations: {
     value: {

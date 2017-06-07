@@ -110,11 +110,7 @@ export default {
       console.log(items)
       _.each(items, (item) => {
         if (this.$route.params[item]) {
-          // console.log(item)
-          // console.log(this.$store.state.route.params[items])
-          // var value = this.validate(item, this.$store.state.route.params[items])
-          // this.setStoreValue(item, this.validate(item, this.$store.state.route.params[items]))
-          this.updated(item, this.validate(item, this.$store.state.route.params[items]))
+          this.setStoreValue(item, this.validate(item, this.$route.params[item]))
         }
       })
     },
