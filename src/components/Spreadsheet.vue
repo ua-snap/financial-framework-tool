@@ -5,14 +5,19 @@
         <tr>
           <th scope="col"></th>
           <th scope="col">2016</th>
-          <th scope="col">2025</th>
+          <th scope="col">FY2018</th>
+          <th scope="col">FY2019</th>
+          <th scope="col">FY2020</th>
+          <th scope="col">FY2025</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th scope="row">Current Student Full-Time Equivalents (FTE)</th>
-          <td>{{ studentFte2016 }}
-          </td>
+          <td>{{ studentFte2016 }}</td>
+          <td>{{ studentFte2018 }}</td>
+          <td>{{ studentFte2019 }}</td>
+          <td>{{ studentFte2020 }}</td>
           <td>
             <slider-input
               id="studentFte2025"
@@ -30,6 +35,15 @@
             {{ tuitionFeesFTE2016 }}
           </td>
           <td>
+            placeholder
+          </td>
+          <td>
+            placeholder
+          </td>
+          <td>
+            placeholder
+          </td>
+          <td>
             <slider-input
               id="tuitionFeesFTE2025"
               :min="tuitionFeesFTE2025min"
@@ -41,17 +55,26 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">State Appropriation per Student FTE</th>
+          <th scope="row">Total State Appropriation</th>
           <td>
-            {{ stateAppropriationFTE2016 }}
+            {{ totalStateAppropriation2016 }}
+          </td>
+          <td>
+            placeholder
+          </td>
+          <td>
+            placeholder
+          </td>
+          <td>
+            placeholder
           </td>
           <td>
             <slider-input
-              id="stateAppropriationFTE2025"
-              :min="stateAppropriationFTE2025min"
-              :max="stateAppropriationFTE2025max"
-              :start="stateAppropriationFTE2025start"
-              :currvalue="stateAppropriationFTE2025"
+              id="totalStateAppropriation2025"
+              :min="totalStateAppropriation2025min"
+              :max="totalStateAppropriation2025max"
+              :start="totalStateAppropriation2025start"
+              :currvalue="totalStateAppropriation2025"
               v-on:updated="updated"
             ></slider-input>
           </td>
@@ -60,21 +83,18 @@
           <th scope="row">Total Tuition &amp; Fees (Million $)</th>
           <td>{{ totalTuitionFees2016 }}</td>
           <td>
+            placeholder
+          </td>
+          <td>
+            placeholder
+          </td>
+          <td>
+            placeholder
+          </td>
+          <td>
             {{ totalTuitionFees2025 }}
             <percent-change
               :value="totalTuitionFees2025"
-              :start="totalTuitionFees2025start"
-            ></percent-change>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Total State Appropriation (Million $)</th>
-          <td>{{ totalStateAppropriation2016 }}</td>
-          <td>
-            {{ totalStateAppropriation2025 }}
-            <percent-change
-              :value="totalStateAppropriation2025"
-              :start="totalStateAppropriation2025start"
             ></percent-change>
           </td>
         </tr>
@@ -82,10 +102,18 @@
           <th scope="row">Revenue, Educational Cost (Million $)</th>
           <td>{{ revenueEducationCost2016 }}</td>
           <td>
+            placeholder
+          </td>
+          <td>
+            placeholder
+          </td>
+          <td>
+            placeholder
+          </td>
+          <td>
             {{ revenueEducationCost2025 }}
             <percent-change
               :value="revenueEducationCost2025"
-              :start="revenueEducationCost2025start"
             ></percent-change>
           </td>
         </tr>
@@ -106,29 +134,30 @@ export default {
   },
   props: [
     'studentFte2016',
+    'studentFte2018',
+    'studentFte2019',
+    'studentFte2020',
     'studentFte2025',
     'studentFte2025start',
     'studentFte2025min',
     'studentFte2025max',
+
     'tuitionFeesFTE2016',
     'tuitionFeesFTE2025',
     'tuitionFeesFTE2025start',
     'tuitionFeesFTE2025min',
     'tuitionFeesFTE2025max',
-    'stateAppropriationFTE2016',
-    'stateAppropriationFTE2025',
-    'stateAppropriationFTE2025start',
-    'stateAppropriationFTE2025min',
-    'stateAppropriationFTE2025max',
     'totalTuitionFees2016',
     'totalTuitionFees2025',
-    'totalTuitionFees2025start',
-    'revenueEducationCost2016',
-    'revenueEducationCost2025',
-    'revenueEducationCost2025start',
+
     'totalStateAppropriation2016',
     'totalStateAppropriation2025',
-    'totalStateAppropriation2025start'
+    'totalStateAppropriation2025min',
+    'totalStateAppropriation2025max',
+    'totalStateAppropriation2025start',
+
+    'revenueEducationCost2016',
+    'revenueEducationCost2025'
   ],
   methods: {
     updated: function (item, value) {

@@ -12,7 +12,7 @@ export default new Vuex.Store({
     // provided via email/spreadsheet
     studentFte2025: 26805,
     tuitionFeesFTE2025: 10089,
-    stateAppropriationFTE2025: 11642
+    totalStateAppropriation2025: 312
   },
   mutations: {
     update (state, payload) {
