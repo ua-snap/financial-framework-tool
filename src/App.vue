@@ -6,22 +6,28 @@
         <spreadsheet
           :studentFte2016="studentFte2016"
           :studentFte2025="studentFte2025"
+          :studentFte2025start="studentFte2025start"
           :studentFte2025min="studentFte2025min"
           :studentFte2025max="studentFte2025max"
           :tuitionFeesFTE2016="tuitionFeesFTE2016"
           :tuitionFeesFTE2025="tuitionFeesFTE2025"
+          :tuitionFeesFTE2025start="tuitionFeesFTE2025start"
           :tuitionFeesFTE2025min="tuitionFeesFTE2025min"
           :tuitionFeesFTE2025max="tuitionFeesFTE2025max"
           :stateAppropriationFTE2016="stateAppropriationFTE2016"
           :stateAppropriationFTE2025="stateAppropriationFTE2025"
+          :stateAppropriationFTE2025start="stateAppropriationFTE2025start"
           :stateAppropriationFTE2025min="stateAppropriationFTE2025min"
           :stateAppropriationFTE2025max="stateAppropriationFTE2025max"
           :totalTuitionFees2016="totalTuitionFees2016"
           :totalTuitionFees2025="totalTuitionFees2025"
+          :totalTuitionFees2025start="totalTuitionFees2025start"
           :totalStateAppropriation2016="totalStateAppropriation2016"
           :totalStateAppropriation2025="totalStateAppropriation2025"
+          :totalStateAppropriation2025start="totalStateAppropriation2025start"
           :revenueEducationCost2016="revenueEducationCost2016"
           :revenueEducationCost2025="revenueEducationCost2025"
+          :revenueEducationCost2025start="revenueEducationCost2025start"
           v-on:updated="updated"
         ></spreadsheet>
       </div>
@@ -61,36 +67,27 @@ export default {
   },
   data: () => ({
     studentFte2016: 19229,
+    studentFte2025start: 26805,
+    studentFte2025min: 10000,
+    studentFte2025max: 35000,
     tuitionFeesFTE2016: 6806,
-    stateAppropriationFTE2016: 16692
+    tuitionFeesFTE2025start: 10089,
+    tuitionFeesFTE2025min: 5000,
+    tuitionFeesFTE2025max: 15000,
+    stateAppropriationFTE2016: 16692,
+    stateAppropriationFTE2025start: 11642,
+    stateAppropriationFTE2025min: 8000,
+    stateAppropriationFTE2025max: 20000
   }),
   computed: {
     studentFte2025 () {
       return this.$store.state.studentFte2025
     },
-    studentFte2025min () {
-      return this.$store.state.studentFte2025min
-    },
-    studentFte2025max () {
-      return this.$store.state.studentFte2025max
-    },
     tuitionFeesFTE2025 () {
       return this.$store.state.tuitionFeesFTE2025
     },
-    tuitionFeesFTE2025min () {
-      return this.$store.state.tuitionFeesFTE2025min
-    },
-    tuitionFeesFTE2025max () {
-      return this.$store.state.tuitionFeesFTE2025max
-    },
     stateAppropriationFTE2025 () {
       return this.$store.state.stateAppropriationFTE2025
-    },
-    stateAppropriationFTE2025min () {
-      return this.$store.state.stateAppropriationFTE2025min
-    },
-    stateAppropriationFTE2025max () {
-      return this.$store.state.stateAppropriationFTE2025max
     },
     totalTuitionFees2016: function () {
       return ((this.tuitionFeesFTE2016 * this.studentFte2016) / 1000000).toFixed(2)
@@ -98,24 +95,34 @@ export default {
     totalTuitionFees2025: function () {
       return ((this.tuitionFeesFTE2025 * this.studentFte2025) / 1000000).toFixed(2)
     },
+    totalTuitionFees2025start: function () {
+      return ((this.tuitionFeesFTE2025start * this.studentFte2025start) / 1000000).toFixed(2)
+    },
     totalStateAppropriation2016: function () {
       return ((this.stateAppropriationFTE2016 * this.studentFte2016) / 1000000).toFixed(2)
     },
     totalStateAppropriation2025: function () {
       return ((this.stateAppropriationFTE2025 * this.studentFte2025) / 1000000).toFixed(2)
     },
+    totalStateAppropriation2025start: function () {
+      return ((this.stateAppropriationFTE2025start * this.studentFte2025start) / 1000000).toFixed(2)
+    },
     revenueEducationCost2016: function () {
       return (((this.tuitionFeesFTE2016 + this.stateAppropriationFTE2016) * this.studentFte2016) / 1000000).toFixed(2)
     },
     revenueEducationCost2025: function () {
       return (((this.tuitionFeesFTE2025 + this.stateAppropriationFTE2025) * this.studentFte2025) / 1000000).toFixed(2)
+    },
+    revenueEducationCost2025start: function () {
+      return (((this.tuitionFeesFTE2025start + this.stateAppropriationFTE2025start) * this.studentFte2025start) / 1000000).toFixed(2)
     }
   },
   methods: {
     restoreValuesFromUrl (items) {
+      console.log(items)
       _.each(items, (item) => {
         if (this.$route.params[item]) {
-          this.setStoreValue(item, this.validate(item, this.$store.state.route.params[item]))
+          this.setStoreValue(item, this.validate(item, this.$route.params[item]))
         }
       })
     },
@@ -129,6 +136,7 @@ export default {
     // can add min/max if needed later.  Sets to 0 if invalid.
     validate (item, value) {
       var validated = parseInt(value)
+      console.log(validated)
       if (_.isNaN(validated) === true) {
         validated = 0
       }

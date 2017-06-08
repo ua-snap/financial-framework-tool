@@ -11,10 +11,11 @@ export default {
     }
   },
   props: [
-    'value'
+    'value',
+    'start'
   ],
   created: function () {
-    this.startValue = this.value
+    this.startValue = this.start
   },
   computed: {
     percentChange: function () {
