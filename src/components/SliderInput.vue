@@ -23,8 +23,7 @@
 </template>
 
 <script>
-// @blur="$v.value.$touch()"
-// v-on:input="updateValue($event.target.value)"
+
 import Slider from '../../node_modules/bootstrap-slider'
 import _ from 'lodash'
 import { between } from 'vuelidate/lib/validators'
