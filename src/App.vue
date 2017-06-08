@@ -14,23 +14,52 @@
           :studentFte2025max="studentFte2025max"
 
           :tuitionFeesFTE2016="tuitionFeesFTE2016"
-
-          :totalStateAppropriation2016="totalStateAppropriation2016"
+          :tuitionFeesFTE2018="tuitionFeesFTE2018"
+          :tuitionFeesFTE2018start="tuitionFeesFTE2018start"
+          :tuitionFeesFTE2018min="tuitionFeesFTE2018min"
+          :tuitionFeesFTE2018max="tuitionFeesFTE2018max"
+          :tuitionFeesFTE2019="tuitionFeesFTE2019"
+          :tuitionFeesFTE2019start="tuitionFeesFTE2019start"
+          :tuitionFeesFTE2019min="tuitionFeesFTE2019min"
+          :tuitionFeesFTE2019max="tuitionFeesFTE2019max"
+          :tuitionFeesFTE2020="tuitionFeesFTE2020"
+          :tuitionFeesFTE2020start="tuitionFeesFTE2020start"
+          :tuitionFeesFTE2020min="tuitionFeesFTE2020min"
+          :tuitionFeesFTE2020max="tuitionFeesFTE2020max"
 
           :tuitionFeesFTE2025="tuitionFeesFTE2025"
           :tuitionFeesFTE2025start="tuitionFeesFTE2025start"
           :tuitionFeesFTE2025min="tuitionFeesFTE2025min"
           :tuitionFeesFTE2025max="tuitionFeesFTE2025max"
 
+          :totalStateAppropriation2016="totalStateAppropriation2016"
+          :totalStateAppropriation2018="totalStateAppropriation2018"
+          :totalStateAppropriation2018start="totalStateAppropriation2018start"
+          :totalStateAppropriation2018min="totalStateAppropriation2018min"
+          :totalStateAppropriation2018max="totalStateAppropriation2018max"
+          :totalStateAppropriation2019="totalStateAppropriation2019"
+          :totalStateAppropriation2019start="totalStateAppropriation2019start"
+          :totalStateAppropriation2019min="totalStateAppropriation2019min"
+          :totalStateAppropriation2019max="totalStateAppropriation2019max"
+          :totalStateAppropriation2020="totalStateAppropriation2020"
+          :totalStateAppropriation2020start="totalStateAppropriation2020start"
+          :totalStateAppropriation2020min="totalStateAppropriation2020min"
+          :totalStateAppropriation2020max="totalStateAppropriation2020max"
           :totalStateAppropriation2025="totalStateAppropriation2025"
           :totalStateAppropriation2025start="totalStateAppropriation2025start"
           :totalStateAppropriation2025min="totalStateAppropriation2025min"
           :totalStateAppropriation2025max="totalStateAppropriation2025max"
 
           :totalTuitionFees2016="totalTuitionFees2016"
+          :totalTuitionFees2018="totalTuitionFees2018"
+          :totalTuitionFees2019="totalTuitionFees2019"
+          :totalTuitionFees2020="totalTuitionFees2020"
           :totalTuitionFees2025="totalTuitionFees2025"
 
           :revenueEducationCost2016="revenueEducationCost2016"
+          :revenueEducationCost2018="revenueEducationCost2018"
+          :revenueEducationCost2019="revenueEducationCost2019"
+          :revenueEducationCost2020="revenueEducationCost2020"
           :revenueEducationCost2025="revenueEducationCost2025"
           v-on:updated="updated"
         ></spreadsheet>
@@ -65,7 +94,13 @@ export default {
   created () {
     this.restoreValuesFromUrl([
       'studentFte2025',
+      'tuitionFeesFTE2018',
+      'tuitionFeesFTE2019',
+      'tuitionFeesFTE2020',
       'tuitionFeesFTE2025',
+      'totalStateAppropriation2018',
+      'totalStateAppropriation2019',
+      'totalStateAppropriation2020',
       'totalStateAppropriation2025'
     ])
   },
@@ -78,14 +113,32 @@ export default {
     studentFte2025max: 35000,
 
     tuitionFeesFTE2016: 6806,
+    tuitionFeesFTE2018start: 7000,
+    tuitionFeesFTE2018min: 5000,
+    tuitionFeesFTE2018max: 15000,
+    tuitionFeesFTE2019start: 7500,
+    tuitionFeesFTE2019min: 5000,
+    tuitionFeesFTE2019max: 15000,
+    tuitionFeesFTE2020start: 8000,
+    tuitionFeesFTE2020min: 5000,
+    tuitionFeesFTE2020max: 15000,
     tuitionFeesFTE2025start: 10089,
     tuitionFeesFTE2025min: 5000,
     tuitionFeesFTE2025max: 15000,
 
     totalStateAppropriation2016: 350,
-    totalStateAppropriation2025start: 344,
+    totalStateAppropriation2018min: 200,
+    totalStateAppropriation2018max: 500,
+    totalStateAppropriation2018start: 340,
+    totalStateAppropriation2019min: 200,
+    totalStateAppropriation2019max: 500,
+    totalStateAppropriation2019start: 330,
+    totalStateAppropriation2020min: 200,
+    totalStateAppropriation2020max: 500,
+    totalStateAppropriation2020start: 323,
     totalStateAppropriation2025min: 200,
     totalStateAppropriation2025max: 500,
+    totalStateAppropriation2025start: 318,
 
     totalTuitionFees2016: 130.9,
 
@@ -96,17 +149,34 @@ export default {
     studentFte2019 () { return this.interpolateStudentFte(2019) },
     studentFte2020 () { return this.interpolateStudentFte(2020) },
     studentFte2025 () { return this.$store.state.studentFte2025 },
+
+    tuitionFeesFTE2018 () { return this.$store.state.tuitionFeesFTE2018 },
+    tuitionFeesFTE2019 () { return this.$store.state.tuitionFeesFTE2019 },
+    tuitionFeesFTE2020 () { return this.$store.state.tuitionFeesFTE2020 },
     tuitionFeesFTE2025 () { return this.$store.state.tuitionFeesFTE2025 },
+
+    totalStateAppropriation2018 () { return this.$store.state.totalStateAppropriation2018 },
+    totalStateAppropriation2019 () { return this.$store.state.totalStateAppropriation2019 },
+    totalStateAppropriation2020 () { return this.$store.state.totalStateAppropriation2020 },
     totalStateAppropriation2025 () { return this.$store.state.totalStateAppropriation2025 },
 
-    totalTuitionFees2025: function () {
-      return ((this.tuitionFeesFTE2025 * this.studentFte2025) / 1000000).toFixed(2)
-    },
-    revenueEducationCost2025: function () {
-      return parseFloat(this.totalTuitionFees2025) + parseFloat(this.totalStateAppropriation2025)
-    }
+    totalTuitionFees2018: function () { return this.computeTotalTuitionFees(this.tuitionFeesFTE2018, this.studentFte2018) },
+    totalTuitionFees2019: function () { return this.computeTotalTuitionFees(this.tuitionFeesFTE2019, this.studentFte2019) },
+    totalTuitionFees2020: function () { return this.computeTotalTuitionFees(this.tuitionFeesFTE2020, this.studentFte2020) },
+    totalTuitionFees2025: function () { return this.computeTotalTuitionFees(this.tuitionFeesFTE2025, this.studentFte2025) },
+
+    revenueEducationCost2018: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2025, this.totalStateAppropriation2018) },
+    revenueEducationCost2019: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2025, this.totalStateAppropriation2019) },
+    revenueEducationCost2020: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2025, this.totalStateAppropriation2020) },
+    revenueEducationCost2025: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2025, this.totalStateAppropriation2025) }
   },
   methods: {
+    computeRevenueEducationCost (tuition, appropriation) {
+      return (parseFloat(tuition) + parseFloat(appropriation)).toFixed(2)
+    },
+    computeTotalTuitionFees (fees, fte) {
+      return ((fees * fte) / 1000000).toFixed(2)
+    },
     restoreValuesFromUrl (items) {
       _.each(items, (item) => {
         if (this.$route.params[item]) {
@@ -170,7 +240,13 @@ export default {
         name: 'edited',
         params: {
           studentFte2025: this.studentFte2025,
+          tuitionFeesFTE2018: this.tuitionFeesFTE2018,
+          tuitionFeesFTE2019: this.tuitionFeesFTE2019,
+          tuitionFeesFTE2020: this.tuitionFeesFTE2020,
           tuitionFeesFTE2025: this.tuitionFeesFTE2025,
+          totalStateAppropriation2018: this.totalStateAppropriation2018,
+          totalStateAppropriation2019: this.totalStateAppropriation2019,
+          totalStateAppropriation2020: this.totalStateAppropriation2020,
           totalStateAppropriation2025: this.totalStateAppropriation2025
         }
       })

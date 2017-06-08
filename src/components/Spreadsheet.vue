@@ -35,13 +35,34 @@
             {{ tuitionFeesFTE2016 }}
           </td>
           <td>
-            placeholder
+            <slider-input
+              id="tuitionFeesFTE2018"
+              :min="tuitionFeesFTE2018min"
+              :max="tuitionFeesFTE2018max"
+              :start="tuitionFeesFTE2018start"
+              :currvalue="tuitionFeesFTE2018"
+              v-on:updated="updated"
+            ></slider-input>
           </td>
           <td>
-            placeholder
+            <slider-input
+              id="tuitionFeesFTE2019"
+              :min="tuitionFeesFTE2019min"
+              :max="tuitionFeesFTE2019max"
+              :start="tuitionFeesFTE2019start"
+              :currvalue="tuitionFeesFTE2019"
+              v-on:updated="updated"
+            ></slider-input>
           </td>
           <td>
-            placeholder
+            <slider-input
+              id="tuitionFeesFTE2020"
+              :min="tuitionFeesFTE2020min"
+              :max="tuitionFeesFTE2020max"
+              :start="tuitionFeesFTE2020start"
+              :currvalue="tuitionFeesFTE2020"
+              v-on:updated="updated"
+            ></slider-input>
           </td>
           <td>
             <slider-input
@@ -55,18 +76,39 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">Total State Appropriation</th>
+          <th scope="row">Total State Appropriation (Million $)</th>
           <td>
             {{ totalStateAppropriation2016 }}
           </td>
           <td>
-            placeholder
+            <slider-input
+              id="totalStateAppropriation2018"
+              :min="totalStateAppropriation2018min"
+              :max="totalStateAppropriation2018max"
+              :start="totalStateAppropriation2018start"
+              :currvalue="totalStateAppropriation2018"
+              v-on:updated="updated"
+            ></slider-input>
           </td>
           <td>
-            placeholder
+            <slider-input
+              id="totalStateAppropriation2019"
+              :min="totalStateAppropriation2019min"
+              :max="totalStateAppropriation2019max"
+              :start="totalStateAppropriation2019start"
+              :currvalue="totalStateAppropriation2019"
+              v-on:updated="updated"
+            ></slider-input>
           </td>
           <td>
-            placeholder
+            <slider-input
+              id="totalStateAppropriation2020"
+              :min="totalStateAppropriation2020min"
+              :max="totalStateAppropriation2020max"
+              :start="totalStateAppropriation2020start"
+              :currvalue="totalStateAppropriation2020"
+              v-on:updated="updated"
+            ></slider-input>
           </td>
           <td>
             <slider-input
@@ -83,13 +125,13 @@
           <th scope="row">Total Tuition &amp; Fees (Million $)</th>
           <td>{{ totalTuitionFees2016 }}</td>
           <td>
-            placeholder
+            {{ totalTuitionFees2018 }}
           </td>
           <td>
-            placeholder
+            {{ totalTuitionFees2019 }}
           </td>
           <td>
-            placeholder
+            {{ totalTuitionFees2020 }}
           </td>
           <td>
             {{ totalTuitionFees2025 }}
@@ -102,13 +144,13 @@
           <th scope="row">Revenue, Educational Cost (Million $)</th>
           <td>{{ revenueEducationCost2016 }}</td>
           <td>
-            placeholder
+            {{ revenueEducationCost2018 }}
           </td>
           <td>
-            placeholder
+            {{ revenueEducationCost2019 }}
           </td>
           <td>
-            placeholder
+            {{ revenueEducationCost2020 }}
           </td>
           <td>
             {{ revenueEducationCost2025 }}
@@ -143,20 +185,51 @@ export default {
     'studentFte2025max',
 
     'tuitionFeesFTE2016',
+    'tuitionFeesFTE2018',
+    'tuitionFeesFTE2018start',
+    'tuitionFeesFTE2018min',
+    'tuitionFeesFTE2018max',
+    'tuitionFeesFTE2019',
+    'tuitionFeesFTE2019start',
+    'tuitionFeesFTE2019min',
+    'tuitionFeesFTE2019max',
+    'tuitionFeesFTE2020',
+    'tuitionFeesFTE2020start',
+    'tuitionFeesFTE2020min',
+    'tuitionFeesFTE2020max',
     'tuitionFeesFTE2025',
     'tuitionFeesFTE2025start',
     'tuitionFeesFTE2025min',
     'tuitionFeesFTE2025max',
-    'totalTuitionFees2016',
-    'totalTuitionFees2025',
 
     'totalStateAppropriation2016',
+    'totalStateAppropriation2018',
+    'totalStateAppropriation2018start',
+    'totalStateAppropriation2018min',
+    'totalStateAppropriation2018max',
+    'totalStateAppropriation2019',
+    'totalStateAppropriation2019start',
+    'totalStateAppropriation2019min',
+    'totalStateAppropriation2019max',
+    'totalStateAppropriation2020',
+    'totalStateAppropriation2020start',
+    'totalStateAppropriation2020min',
+    'totalStateAppropriation2020max',
     'totalStateAppropriation2025',
+    'totalStateAppropriation2025start',
     'totalStateAppropriation2025min',
     'totalStateAppropriation2025max',
-    'totalStateAppropriation2025start',
+
+    'totalTuitionFees2016',
+    'totalTuitionFees2018',
+    'totalTuitionFees2019',
+    'totalTuitionFees2020',
+    'totalTuitionFees2025',
 
     'revenueEducationCost2016',
+    'revenueEducationCost2018',
+    'revenueEducationCost2019',
+    'revenueEducationCost2020',
     'revenueEducationCost2025'
   ],
   methods: {
@@ -169,4 +242,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+table.table>tbody>tr>td {
+  padding: 1em;
+}
 </style>
