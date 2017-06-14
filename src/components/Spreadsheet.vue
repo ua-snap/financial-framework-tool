@@ -268,6 +268,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 table.table>tbody>tr>td {
-  padding: 1em;
+  padding: 1ex 1em;
 }
 </style>

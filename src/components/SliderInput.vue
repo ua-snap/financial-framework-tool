@@ -3,7 +3,7 @@
     <div class="form-group" v-bind:class="{ 'form-group--error': $v.value.$error } ">
       <input
         ref="input"
-        class="form__input"
+        class="form__input input"
         v-model:trim="value"
         v-model:value="value"
         v-on:input="updateValue($event.target.value, $v.value.between)"
@@ -74,3 +74,12 @@ export default {
   }
 }
 </script>
+
+<style>
+input.input {
+  max-width: 6em;
+}
+.slider.slider-horizontal {
+  max-width: 100px;
+}
+</style>

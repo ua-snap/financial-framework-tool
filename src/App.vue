@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <h1>UA Financial Framework Visualization Tool</h1>
     <div class="row">
       <div class="col-md-6">
@@ -71,14 +71,25 @@
         ></spreadsheet>
       </div>
       <div class="col-md-6">
-        <!-- <graph
+        <graph
           :studentFte2016="studentFte2016"
+          :studentFte2018="studentFte2018"
+          :studentFte2019="studentFte2019"
+          :studentFte2020="studentFte2020"
           :studentFte2025="studentFte2025"
-          :totalTuitionFees2016="totalTuitionFees2016"
-          :totalTuitionFees2025="totalTuitionFees2025"
+
           :totalStateAppropriation2016="totalStateAppropriation2016"
+          :totalStateAppropriation2018="totalStateAppropriation2018"
+          :totalStateAppropriation2019="totalStateAppropriation2019"
+          :totalStateAppropriation2020="totalStateAppropriation2020"
           :totalStateAppropriation2025="totalStateAppropriation2025"
-        ></graph> -->
+
+          :totalTuitionFees2016="totalTuitionFees2016"
+          :totalTuitionFees2018="totalTuitionFees2018"
+          :totalTuitionFees2019="totalTuitionFees2019"
+          :totalTuitionFees2020="totalTuitionFees2020"
+          :totalTuitionFees2025="totalTuitionFees2025"
+        ></graph>
       </div>
     </div>
   </div>
@@ -184,13 +195,13 @@ export default {
   },
   methods: {
     computeStateAppropriationPerFTE (fte, appropriation) {
-      return (parseFloat(appropriation) * 1000000 / parseFloat(fte)).toFixed(2)
+      return parseFloat((parseFloat(appropriation) * 1000000 / parseFloat(fte)).toFixed(2))
     },
     computeRevenueEducationCost (tuition, appropriation) {
-      return (parseFloat(tuition) + parseFloat(appropriation)).toFixed(2)
+      return parseFloat((parseFloat(tuition) + parseFloat(appropriation)).toFixed(2))
     },
     computeTotalTuitionFees (fees, fte) {
-      return ((fees * fte) / 1000000).toFixed(2)
+      return parseFloat(((fees * fte) / 1000000).toFixed(2))
     },
     restoreValuesFromUrl (items) {
       _.each(items, (item) => {
