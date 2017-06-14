@@ -50,6 +50,12 @@
           :totalStateAppropriation2025min="totalStateAppropriation2025min"
           :totalStateAppropriation2025max="totalStateAppropriation2025max"
 
+          :stateAppropriationPerFTE2016="stateAppropriationPerFTE2016"
+          :stateAppropriationPerFTE2018="stateAppropriationPerFTE2018"
+          :stateAppropriationPerFTE2019="stateAppropriationPerFTE2019"
+          :stateAppropriationPerFTE2020="stateAppropriationPerFTE2020"
+          :stateAppropriationPerFTE2025="stateAppropriationPerFTE2025"
+
           :totalTuitionFees2016="totalTuitionFees2016"
           :totalTuitionFees2018="totalTuitionFees2018"
           :totalTuitionFees2019="totalTuitionFees2019"
@@ -160,6 +166,12 @@ export default {
     totalStateAppropriation2020 () { return this.$store.state.totalStateAppropriation2020 },
     totalStateAppropriation2025 () { return this.$store.state.totalStateAppropriation2025 },
 
+    stateAppropriationPerFTE2016 () { return this.computeStateAppropriationPerFTE(this.studentFte2016, this.totalStateAppropriation2016) },
+    stateAppropriationPerFTE2018 () { return this.computeStateAppropriationPerFTE(this.studentFte2018, this.totalStateAppropriation2018) },
+    stateAppropriationPerFTE2019 () { return this.computeStateAppropriationPerFTE(this.studentFte2019, this.totalStateAppropriation2019) },
+    stateAppropriationPerFTE2020 () { return this.computeStateAppropriationPerFTE(this.studentFte2020, this.totalStateAppropriation2020) },
+    stateAppropriationPerFTE2025 () { return this.computeStateAppropriationPerFTE(this.studentFte2025, this.totalStateAppropriation2025) },
+
     totalTuitionFees2018: function () { return this.computeTotalTuitionFees(this.tuitionFeesFTE2018, this.studentFte2018) },
     totalTuitionFees2019: function () { return this.computeTotalTuitionFees(this.tuitionFeesFTE2019, this.studentFte2019) },
     totalTuitionFees2020: function () { return this.computeTotalTuitionFees(this.tuitionFeesFTE2020, this.studentFte2020) },
@@ -171,6 +183,9 @@ export default {
     revenueEducationCost2025: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2025, this.totalStateAppropriation2025) }
   },
   methods: {
+    computeStateAppropriationPerFTE (fte, appropriation) {
+      return (parseFloat(appropriation) * 1000000 / parseFloat(fte)).toFixed(2)
+    },
     computeRevenueEducationCost (tuition, appropriation) {
       return (parseFloat(tuition) + parseFloat(appropriation)).toFixed(2)
     },

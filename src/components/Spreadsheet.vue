@@ -122,6 +122,25 @@
           </td>
         </tr>
         <tr>
+          <th scope="row">State Appropriation per FTE</th>
+          <td>{{ stateAppropriationPerFTE2016 }}</td>
+          <td>
+            {{ stateAppropriationPerFTE2018 }}
+          </td>
+          <td>
+            {{ stateAppropriationPerFTE2019 }}
+          </td>
+          <td>
+            {{ stateAppropriationPerFTE2020 }}
+          </td>
+          <td>
+            {{ stateAppropriationPerFTE2025 }}
+            <percent-change
+              :value="stateAppropriationPerFTE2025"
+            ></percent-change>
+          </td>
+        </tr>
+        <tr>
           <th scope="row">Total Tuition &amp; Fees (Million $)</th>
           <td>{{ totalTuitionFees2016 }}</td>
           <td>
@@ -219,6 +238,12 @@ export default {
     'totalStateAppropriation2025start',
     'totalStateAppropriation2025min',
     'totalStateAppropriation2025max',
+
+    'stateAppropriationPerFTE2016',
+    'stateAppropriationPerFTE2018',
+    'stateAppropriationPerFTE2019',
+    'stateAppropriationPerFTE2020',
+    'stateAppropriationPerFTE2025',
 
     'totalTuitionFees2016',
     'totalTuitionFees2018',
