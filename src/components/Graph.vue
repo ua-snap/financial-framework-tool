@@ -5,22 +5,49 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
+// Returns an linear interpolated value for the specified
+// y1/y2 values with x in the range of 2021-2024.
+// this = x
+var interpolate = function (y1, y2, dx, s) {
+  y1 = parseFloat(y1, 2)
+  y2 = parseFloat(y2, 2)
+  var x = parseInt(this)
+  return ((y2 - y1) / dx) * (x - s) + y1
+}
+
+// Defined for reuse throughout the component
+var xAxisLabels = [2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 
 export default {
   name: 'graph',
   props: [
     'totalTuitionFees2016',
+    'totalTuitionFees2018',
+    'totalTuitionFees2019',
+    'totalTuitionFees2020',
     'totalTuitionFees2025',
     'totalStateAppropriation2016',
+    'totalStateAppropriation2018',
+    'totalStateAppropriation2019',
+    'totalStateAppropriation2020',
     'totalStateAppropriation2025',
     'studentFte2016',
     'studentFte2025'
   ],
   watch: {
     totalTuitionFees2016: function () { this.refreshPlot() },
+    totalTuitionFees2018: function () { this.refreshPlot() },
+    totalTuitionFees2019: function () { this.refreshPlot() },
+    totalTuitionFees2020: function () { this.refreshPlot() },
     totalTuitionFees2025: function () { this.refreshPlot() },
     totalStateAppropriation2016: function () { this.refreshPlot() },
-    totalStateAppropriation2025: function () { this.refreshPlot() }
+    totalStateAppropriation2018: function () { this.refreshPlot() },
+    totalStateAppropriation2019: function () { this.refreshPlot() },
+    totalStateAppropriation2020: function () { this.refreshPlot() },
+    totalStateAppropriation2025: function () { this.refreshPlot() },
+    studentFte2025: function () { this.refreshPlot() }
   },
   mounted () {
     this.graph = document.getElementById('graph1')
@@ -36,9 +63,13 @@ export default {
     getGraphLayout: function () {
       return {
         barmode: 'stack',
+        xaxis: {
+          title: 'Year',
+          type: 'category'
+        },
         yaxis: {
           title: 'Million $',
-          range: [0, 1250]
+          range: [0, 800]
         },
         yaxis2: {
           title: 'Enrollment (FTE)',
@@ -47,18 +78,51 @@ export default {
           range: [10000, 40000]
         },
         legend: {
-          x: 1.2,
+          orientation: 'h',
           font: {
             family: 'Lato'
           }
         }
       }
     },
+    processData: function (field, y1, y2) {
+      var data = _.concat(
+        this[field + '2016'],
+        this[field + '2018'],
+        this[field + '2019'],
+        this[field + '2020'],
+        _.invokeMap(
+          [2021, 2022, 2023, 2024],
+          interpolate,
+          this[field + '2020'],
+          this[field + '2025'],
+          5,
+          2020
+        ),
+        this[field + '2025']
+      )
+      return data
+    },
+    getStudentFteData: function () {
+      var t = _.invokeMap(
+        xAxisLabels,
+        interpolate,
+        this.studentFte2016,
+        this.studentFte2025,
+        9,
+        2016
+      )
+      return t
+    },
     getGraphData: function () {
       return [
         {
-          x: ['2016', '2025'],
-          y: [this.totalStateAppropriation2016, this.totalStateAppropriation2025],
+          x: xAxisLabels,
+          y: this.processData(
+            'totalStateAppropriation',
+            this.totalStateAppropriation2020,
+            this.totalStateAppropriation2025
+          ),
           name: 'State Appropriations',
           type: 'bar',
           marker: {
@@ -66,8 +130,12 @@ export default {
           }
         },
         {
-          x: ['2016', '2025'],
-          y: [this.totalTuitionFees2016, this.totalTuitionFees2025],
+          x: xAxisLabels,
+          y: this.processData(
+            'totalTuitionFees',
+            this.totalTuitionFees2020,
+            this.totalTuitionFees2025
+          ),
           name: 'Tuition &amp; Fees',
           type: 'bar',
           marker: {
@@ -75,8 +143,8 @@ export default {
           }
         },
         {
-          x: ['2016', '2025'],
-          y: [this.studentFte2016, this.studentFte2025],
+          x: xAxisLabels,
+          y: this.getStudentFteData(),
           name: 'Enrollment (FTE)',
           yaxis: 'y2',
           type: 'scatter',
