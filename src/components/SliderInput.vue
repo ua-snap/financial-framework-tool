@@ -44,6 +44,8 @@ export default {
       ticks: [this.min, this.start, this.max],
       tooltip_position: 'bottom'
     })
+    self.slider.handle1.removeAttribute('tabindex')
+    self.slider.handle2.removeAttribute('tabindex')
     self.slider.on('change', function (values) {
       self.value = values.newValue
       self.$emit('updated', self.id, self.value)
