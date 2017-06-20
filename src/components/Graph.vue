@@ -64,7 +64,6 @@ export default {
       return {
         barmode: 'stack',
         xaxis: {
-          title: 'Year',
           type: 'category'
         },
         yaxis: {
