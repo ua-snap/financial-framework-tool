@@ -44,9 +44,9 @@ export default {
       ticks: [this.min, this.start, this.max],
       tooltip_position: 'bottom'
     })
-    self.slider.on('slide', function (value) {
-      self.value = value
-      self.$emit('updated', self.id, value)
+    self.slider.on('change', function (values) {
+      self.value = values.newValue
+      self.$emit('updated', self.id, self.value)
     })
     self.slider.setValue(this.value)
   },
