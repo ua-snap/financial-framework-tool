@@ -41,7 +41,8 @@ export default {
   mounted () {
     var self = this
     self.slider = new Slider('#' + self.id, {
-      ticks: [this.min, this.start, this.max]
+      ticks: [this.min, this.start, this.max],
+      tooltip_position: 'bottom'
     })
     self.slider.on('slide', function (value) {
       self.value = value
