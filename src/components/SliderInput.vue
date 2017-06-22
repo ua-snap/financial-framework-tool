@@ -74,6 +74,12 @@ export default {
         this.$emit('updated', this.id, value)
       }
     }
+  },
+  watch: {
+    currvalue: function (newValue) {
+      this.value = newValue
+      this.slider.setValue(newValue)
+    }
   }
 }
 </script>

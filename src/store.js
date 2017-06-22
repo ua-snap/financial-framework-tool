@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import _ from 'lodash'
 
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
 
-export default new Vuex.Store({
-  strict: debug,
-  state: {
+function defaultValues () {
+  return {
     // These defaults are from the UA Financial Framework assumptions
     // provided via email/spreadsheet
     studentFte2025: 26805,
@@ -19,10 +19,18 @@ export default new Vuex.Store({
     totalStateAppropriation2019: 330,
     totalStateAppropriation2020: 323,
     totalStateAppropriation2025: 312
-  },
+  }
+}
+
+export default new Vuex.Store({
+  strict: debug,
+  state: defaultValues(),
   mutations: {
     update (state, payload) {
       state[payload.field] = payload.value
+    },
+    reset (state) {
+      _.extend(state, defaultValues())
     }
   }
 })

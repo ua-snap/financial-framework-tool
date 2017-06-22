@@ -68,6 +68,7 @@
           :revenueEducationCost2020="revenueEducationCost2020"
           :revenueEducationCost2025="revenueEducationCost2025"
           v-on:updated="updated"
+          v-on:resetdefaults="resetDefaults"
         ></spreadsheet>
       </div>
       <div class="col-md-6">
@@ -276,6 +277,9 @@ export default {
           totalStateAppropriation2025: this.totalStateAppropriation2025
         }
       })
+    },
+    resetDefaults (items) {
+      this.$store.commit('reset')
     }
   }
 }
