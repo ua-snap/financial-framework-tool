@@ -13,22 +13,24 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row">Current Student Full-Time Equivalents (FTE)</th>
+          <th scope="row">Student FTE</th>
           <td>{{ studentFte2016 }}</td>
           <td>{{ studentFte2018 }}</td>
           <td>{{ studentFte2019 }}</td>
           <td>{{ studentFte2020 }}</td>
-          <td>
-            <slider-input
-              id="studentFte2025"
-              :min="studentFte2025min"
-              :max="studentFte2025max"
-              :start="studentFte2025start"
-              :currvalue="studentFte2025"
-              v-on:updated="updated"
-            ></slider-input>
-          </td>
+          <td>{{ studentFte2025 }}</td>
         </tr>
+        <tr>
+          <th scope="row">% change FTE per year</th>
+          <td colspan="5">
+            <percent-input
+              :min="-50"
+              :max="50"
+              :start="2"
+              :currvalue="studentFtePercentChange"
+              v-on:updated="updated"
+            ></percent-input>
+          </td>
         <tr>
           <th scope="row">Tuition and Fees per Student FTE</th>
           <td>
@@ -192,13 +194,15 @@
 import SliderInput from './SliderInput'
 import PercentChange from './PercentChange'
 import ResetButton from './ResetButton'
+import PercentInput from './PercentInput'
 
 export default {
   name: 'spreadsheet',
   components: {
     SliderInput,
     PercentChange,
-    ResetButton
+    ResetButton,
+    PercentInput
   },
   props: [
     'studentFte2016',
@@ -209,6 +213,7 @@ export default {
     'studentFte2025start',
     'studentFte2025min',
     'studentFte2025max',
+    'studentFtePercentChange',
 
     'tuitionFeesFTE2016',
     'tuitionFeesFTE2018',

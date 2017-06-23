@@ -12,6 +12,7 @@
           :studentFte2025start="studentFte2025start"
           :studentFte2025min="studentFte2025min"
           :studentFte2025max="studentFte2025max"
+          :studentFtePercentChange="studentFtePercentChange"
 
           :tuitionFeesFTE2016="tuitionFeesFTE2016"
           :tuitionFeesFTE2018="tuitionFeesFTE2018"
@@ -129,6 +130,7 @@ export default {
     studentFte2025start: 26805,
     studentFte2025min: 10000,
     studentFte2025max: 35000,
+    studentFtePercentChange: 2,
 
     tuitionFeesFTE2016: 6806,
     tuitionFeesFTE2018start: 7000,
@@ -166,7 +168,7 @@ export default {
     studentFte2018 () { return this.interpolateStudentFte(2018) },
     studentFte2019 () { return this.interpolateStudentFte(2019) },
     studentFte2020 () { return this.interpolateStudentFte(2020) },
-    studentFte2025 () { return this.$store.state.studentFte2025 },
+    studentFte2025 () { return this.interpolateStudentFte(2025) },
 
     tuitionFeesFTE2018 () { return this.$store.state.tuitionFeesFTE2018 },
     tuitionFeesFTE2019 () { return this.$store.state.tuitionFeesFTE2019 },
@@ -217,10 +219,10 @@ export default {
         value: value
       })
     },
-    // Returns a linear interpolation of student population
+    // Returns a compounded interest calculation for student FTE
     interpolateStudentFte (year) {
-      var m = (this.studentFte2025 - this.studentFte2016) / 9
-      return Math.floor(m * (year - 2016) + 19229)
+      // v = p(1+r)^y
+      return Math.floor(this.studentFte2016 * ((1 + (this.studentFtePercentChange * 0.01) ** (year - 2016))))
     },
     // Basic validation to check type safety,
     // can add min/max if needed later.  Sets to 0 if invalid.
