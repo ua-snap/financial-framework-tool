@@ -185,6 +185,7 @@
       id="reset"
       v-on:resetdefaults="resetDefaults"
     ></reset-button>
+    <share-button></share-button>
   </div>
 </template>
 
@@ -192,13 +193,15 @@
 import SliderInput from './SliderInput'
 import PercentChange from './PercentChange'
 import ResetButton from './ResetButton'
+import ShareButton from './ShareButton'
 
 export default {
   name: 'spreadsheet',
   components: {
     SliderInput,
     PercentChange,
-    ResetButton
+    ResetButton,
+    ShareButton
   },
   props: [
     'studentFte2016',
