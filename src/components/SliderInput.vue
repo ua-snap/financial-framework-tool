@@ -14,7 +14,6 @@
         type="text"
         v-bind:data-slider-min="min"
         v-bind:data-slider-max="max"
-        data-slider-step="1"
         v-bind:data-slider-value="start"
       />
     </div>
@@ -30,7 +29,17 @@ import { between } from 'vuelidate/lib/validators'
 
 export default {
   name: 'slider-input',
-  props: ['id', 'min', 'max', 'start', 'currvalue'],
+  props: {
+    id: String,
+    min: Number,
+    max: Number,
+    start: Number,
+    currvalue: Number,
+    step: {
+      type: Number,
+      default: 1
+    }
+  },
   data: () => ({
     value: undefined
   }),
@@ -41,6 +50,7 @@ export default {
   mounted () {
     var self = this
     self.slider = new Slider('#' + self.id, {
+      step: this.step,
       ticks: [this.min, this.start, this.max],
       tooltip_position: 'bottom'
     })
@@ -55,14 +65,14 @@ export default {
   validations: {
     value: {
       between (value) {
-        if (_.isNaN(parseInt(value))) { return false }
+        if (_.isNaN(parseFloat(value))) { return false }
         return between(this.min, this.max)(value)
       }
     }
   },
   methods: {
     updateValue: function (value, between) {
-      value = parseInt(value)
+      value = parseFloat(value)
       if (between) {
         if (value > this.max) {
           value = this.max
