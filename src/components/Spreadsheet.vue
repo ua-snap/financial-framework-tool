@@ -180,18 +180,25 @@
         </tr>
       </tbody>
     </table>
+
+    <reset-button
+      id="reset"
+      v-on:resetdefaults="resetDefaults"
+    ></reset-button>
   </div>
 </template>
 
 <script>
 import SliderInput from './SliderInput'
 import PercentChange from './PercentChange'
+import ResetButton from './ResetButton'
 
 export default {
   name: 'spreadsheet',
   components: {
     SliderInput,
-    PercentChange
+    PercentChange,
+    ResetButton
   },
   props: [
     'studentFte2016',
@@ -260,6 +267,9 @@ export default {
   methods: {
     updated: function (item, value) {
       this.$emit('updated', item, value)
+    },
+    resetDefaults: function (item, value) {
+      this.$emit('resetdefaults')
     }
   }
 }
