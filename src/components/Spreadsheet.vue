@@ -180,18 +180,22 @@
         </tr>
       </tbody>
     </table>
+
+    <share-button></share-button>
   </div>
 </template>
 
 <script>
 import SliderInput from './SliderInput'
 import PercentChange from './PercentChange'
+import ShareButton from './ShareButton'
 
 export default {
   name: 'spreadsheet',
   components: {
     SliderInput,
-    PercentChange
+    PercentChange,
+    ShareButton
   },
   props: [
     'studentFte2016',
