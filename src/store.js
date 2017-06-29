@@ -10,14 +10,14 @@ function defaultValues () {
   return {
     // These defaults are from the UA Financial Framework assumptions
     // provided via email/spreadsheet
-    studentFte2025: 26805,
+    studentFtePercentChange: 2,
     tuitionFeesFTE2018: 7000,
     tuitionFeesFTE2019: 7500,
     tuitionFeesFTE2020: 8000,
     tuitionFeesFTE2025: 10089,
     totalStateAppropriation2018: 340,
     totalStateAppropriation2019: 330,
-    totalStateAppropriation2020: 323,
+    totalStateAppropriation2020: 333,
     totalStateAppropriation2025: 312
   }
 }

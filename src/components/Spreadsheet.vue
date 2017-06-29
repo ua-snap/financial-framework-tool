@@ -13,22 +13,26 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row">Current Student Full-Time Equivalents (FTE)</th>
+          <th scope="row">Student FTE</th>
           <td>{{ studentFte2016 }}</td>
           <td>{{ studentFte2018 }}</td>
           <td>{{ studentFte2019 }}</td>
           <td>{{ studentFte2020 }}</td>
-          <td>
+          <td>{{ studentFte2025 }}</td>
+        </tr>
+        <tr>
+          <th scope="row">% change FTE per year</th>
+          <td colspan="5">
             <slider-input
-              id="studentFte2025"
-              :min="studentFte2025min"
-              :max="studentFte2025max"
-              :start="studentFte2025start"
-              :currvalue="studentFte2025"
+              id="studentFtePercentChange"
+              :min="studentFtePercentChangeMin"
+              :max="studentFtePercentChangeMax"
+              :start="studentFtePercentChangeStart"
+              :currvalue="studentFtePercentChange"
+              :step="0.1"
               v-on:updated="updated"
             ></slider-input>
           </td>
-        </tr>
         <tr>
           <th scope="row">Tuition and Fees per Student FTE</th>
           <td>
@@ -37,18 +41,19 @@
           <td>
             <slider-input
               id="tuitionFeesFTE2018"
-              :min="tuitionFeesFTE2018min"
-              :max="tuitionFeesFTE2018max"
+              :min="tuitionFeesFTE2018Min"
+              :max="tuitionFeesFTE2018Max"
               :start="tuitionFeesFTE2018start"
               :currvalue="tuitionFeesFTE2018"
+              :step="1"
               v-on:updated="updated"
             ></slider-input>
           </td>
           <td>
             <slider-input
               id="tuitionFeesFTE2019"
-              :min="tuitionFeesFTE2019min"
-              :max="tuitionFeesFTE2019max"
+              :min="tuitionFeesFTE2019Min"
+              :max="tuitionFeesFTE2019Max"
               :start="tuitionFeesFTE2019start"
               :currvalue="tuitionFeesFTE2019"
               v-on:updated="updated"
@@ -57,8 +62,8 @@
           <td>
             <slider-input
               id="tuitionFeesFTE2020"
-              :min="tuitionFeesFTE2020min"
-              :max="tuitionFeesFTE2020max"
+              :min="tuitionFeesFTE2020Min"
+              :max="tuitionFeesFTE2020Max"
               :start="tuitionFeesFTE2020start"
               :currvalue="tuitionFeesFTE2020"
               v-on:updated="updated"
@@ -67,8 +72,8 @@
           <td>
             <slider-input
               id="tuitionFeesFTE2025"
-              :min="tuitionFeesFTE2025min"
-              :max="tuitionFeesFTE2025max"
+              :min="tuitionFeesFTE2025Min"
+              :max="tuitionFeesFTE2025Max"
               :start="tuitionFeesFTE2025start"
               :currvalue="tuitionFeesFTE2025"
               v-on:updated="updated"
@@ -83,8 +88,8 @@
           <td>
             <slider-input
               id="totalStateAppropriation2018"
-              :min="totalStateAppropriation2018min"
-              :max="totalStateAppropriation2018max"
+              :min="totalStateAppropriation2018Min"
+              :max="totalStateAppropriation2018Max"
               :start="totalStateAppropriation2018start"
               :currvalue="totalStateAppropriation2018"
               v-on:updated="updated"
@@ -93,8 +98,8 @@
           <td>
             <slider-input
               id="totalStateAppropriation2019"
-              :min="totalStateAppropriation2019min"
-              :max="totalStateAppropriation2019max"
+              :min="totalStateAppropriation2019Min"
+              :max="totalStateAppropriation2019Max"
               :start="totalStateAppropriation2019start"
               :currvalue="totalStateAppropriation2019"
               v-on:updated="updated"
@@ -103,8 +108,8 @@
           <td>
             <slider-input
               id="totalStateAppropriation2020"
-              :min="totalStateAppropriation2020min"
-              :max="totalStateAppropriation2020max"
+              :min="totalStateAppropriation2020Min"
+              :max="totalStateAppropriation2020Max"
               :start="totalStateAppropriation2020start"
               :currvalue="totalStateAppropriation2020"
               v-on:updated="updated"
@@ -113,8 +118,8 @@
           <td>
             <slider-input
               id="totalStateAppropriation2025"
-              :min="totalStateAppropriation2025min"
-              :max="totalStateAppropriation2025max"
+              :min="totalStateAppropriation2025Min"
+              :max="totalStateAppropriation2025Max"
               :start="totalStateAppropriation2025start"
               :currvalue="totalStateAppropriation2025"
               v-on:updated="updated"
@@ -135,9 +140,6 @@
           </td>
           <td>
             {{ stateAppropriationPerFTE2025 }}
-            <percent-change
-              :value="stateAppropriationPerFTE2025"
-            ></percent-change>
           </td>
         </tr>
         <tr>
@@ -154,9 +156,6 @@
           </td>
           <td>
             {{ totalTuitionFees2025 }}
-            <percent-change
-              :value="totalTuitionFees2025"
-            ></percent-change>
           </td>
         </tr>
         <tr>
@@ -173,9 +172,6 @@
           </td>
           <td>
             {{ revenueEducationCost2025 }}
-            <percent-change
-              :value="revenueEducationCost2025"
-            ></percent-change>
           </td>
         </tr>
       </tbody>
@@ -191,7 +187,6 @@
 
 <script>
 import SliderInput from './SliderInput'
-import PercentChange from './PercentChange'
 import ResetButton from './ResetButton'
 import ShareButton from './ShareButton'
 
@@ -199,9 +194,8 @@ export default {
   name: 'spreadsheet',
   components: {
     SliderInput,
-    PercentChange,
-    ResetButton,
-    ShareButton
+    ShareButton,
+    ResetButton
   },
   props: [
     'studentFte2016',
@@ -209,45 +203,46 @@ export default {
     'studentFte2019',
     'studentFte2020',
     'studentFte2025',
-    'studentFte2025start',
-    'studentFte2025min',
-    'studentFte2025max',
+    'studentFtePercentChange',
+    'studentFtePercentChangeStart',
+    'studentFtePercentChangeMin',
+    'studentFtePercentChangeMax',
 
     'tuitionFeesFTE2016',
     'tuitionFeesFTE2018',
     'tuitionFeesFTE2018start',
-    'tuitionFeesFTE2018min',
-    'tuitionFeesFTE2018max',
+    'tuitionFeesFTE2018Min',
+    'tuitionFeesFTE2018Max',
     'tuitionFeesFTE2019',
     'tuitionFeesFTE2019start',
-    'tuitionFeesFTE2019min',
-    'tuitionFeesFTE2019max',
+    'tuitionFeesFTE2019Min',
+    'tuitionFeesFTE2019Max',
     'tuitionFeesFTE2020',
     'tuitionFeesFTE2020start',
-    'tuitionFeesFTE2020min',
-    'tuitionFeesFTE2020max',
+    'tuitionFeesFTE2020Min',
+    'tuitionFeesFTE2020Max',
     'tuitionFeesFTE2025',
     'tuitionFeesFTE2025start',
-    'tuitionFeesFTE2025min',
-    'tuitionFeesFTE2025max',
+    'tuitionFeesFTE2025Min',
+    'tuitionFeesFTE2025Max',
 
     'totalStateAppropriation2016',
     'totalStateAppropriation2018',
     'totalStateAppropriation2018start',
-    'totalStateAppropriation2018min',
-    'totalStateAppropriation2018max',
+    'totalStateAppropriation2018Min',
+    'totalStateAppropriation2018Max',
     'totalStateAppropriation2019',
     'totalStateAppropriation2019start',
-    'totalStateAppropriation2019min',
-    'totalStateAppropriation2019max',
+    'totalStateAppropriation2019Min',
+    'totalStateAppropriation2019Max',
     'totalStateAppropriation2020',
     'totalStateAppropriation2020start',
-    'totalStateAppropriation2020min',
-    'totalStateAppropriation2020max',
+    'totalStateAppropriation2020Min',
+    'totalStateAppropriation2020Max',
     'totalStateAppropriation2025',
     'totalStateAppropriation2025start',
-    'totalStateAppropriation2025min',
-    'totalStateAppropriation2025max',
+    'totalStateAppropriation2025Min',
+    'totalStateAppropriation2025Max',
 
     'stateAppropriationPerFTE2016',
     'stateAppropriationPerFTE2018',
