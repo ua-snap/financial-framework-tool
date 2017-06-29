@@ -10,7 +10,7 @@ function defaultValues () {
   return {
     // These defaults are from the UA Financial Framework assumptions
     // provided via email/spreadsheet
-    studentFtePercentChange: 20,
+    studentFtePercentChange: 2,
     tuitionFeesFTE2018: 7000,
     tuitionFeesFTE2019: 7500,
     tuitionFeesFTE2020: 8000,
