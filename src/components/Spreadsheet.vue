@@ -189,13 +189,11 @@
 import SliderInput from './SliderInput'
 import ResetButton from './ResetButton'
 import ShareButton from './ShareButton'
-import PercentChange from './PercentInput'
 
 export default {
   name: 'spreadsheet',
   components: {
     SliderInput,
-    PercentChange,
     ShareButton,
     ResetButton
   },
