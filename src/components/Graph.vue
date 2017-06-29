@@ -62,19 +62,20 @@ export default {
     },
     getGraphLayout: function () {
       return {
+        title: 'Enrollment, Tuition & Fees, State Appropriations',
         barmode: 'stack',
         xaxis: {
           type: 'category'
         },
         yaxis: {
           title: 'Million $',
-          range: [0, 800]
+          range: [0, 700]
         },
         yaxis2: {
           title: 'Enrollment (FTE)',
           side: 'right',
           overlaying: 'y',
-          range: [10000, 40000]
+          range: [10000, 30000]
         },
         legend: {
           orientation: 'h',
@@ -122,10 +123,10 @@ export default {
             this.totalStateAppropriation2020,
             this.totalStateAppropriation2025
           ),
-          name: 'State Appropriations',
+          name: 'Appropriations',
           type: 'bar',
           marker: {
-            color: '#236192'
+            color: '#4575B5'
           }
         },
         {
@@ -135,16 +136,16 @@ export default {
             this.totalTuitionFees2020,
             this.totalTuitionFees2025
           ),
-          name: 'Tuition &amp; Fees',
+          name: 'Tuition & Fees',
           type: 'bar',
           marker: {
-            color: '#FFCD00'
+            color: '#E3593D'
           }
         },
         {
           x: xAxisLabels,
           y: this.getStudentFteData(),
-          name: 'Enrollment (FTE)',
+          name: 'Enrollment',
           yaxis: 'y2',
           type: 'scatter',
           line: {

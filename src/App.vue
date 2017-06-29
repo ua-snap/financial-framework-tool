@@ -92,6 +92,13 @@
           :totalTuitionFees2020="totalTuitionFees2020"
           :totalTuitionFees2025="totalTuitionFees2025"
         ></graph>
+        <appropriations-graph
+          :stateAppropriationPerFTE2016="stateAppropriationPerFTE2016"
+          :stateAppropriationPerFTE2018="stateAppropriationPerFTE2018"
+          :stateAppropriationPerFTE2019="stateAppropriationPerFTE2019"
+          :stateAppropriationPerFTE2020="stateAppropriationPerFTE2020"
+          :stateAppropriationPerFTE2025="stateAppropriationPerFTE2025"
+        ></appropriations-graph>
       </div>
     </div>
   </div>
@@ -100,13 +107,15 @@
 <script>
 import Spreadsheet from './components/Spreadsheet'
 import Graph from './components/Graph'
+import AppropriationsGraph from './components/AppropriationsGraph'
 import _ from 'lodash'
 
 export default {
   name: 'app',
   components: {
     Spreadsheet,
-    Graph
+    Graph,
+    AppropriationsGraph
   },
   // Here, we want to initialize the state of the Store
   // from parameters present in the URL (if present).
@@ -267,4 +276,9 @@ export default {
 </script>
 
 <style>
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+
+* {
+  font-family: Lato;
+}
 </style>

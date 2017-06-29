@@ -17,7 +17,7 @@ function defaultValues () {
     tuitionFeesFTE2025: 10089,
     totalStateAppropriation2018: 340,
     totalStateAppropriation2019: 330,
-    totalStateAppropriation2020: 323,
+    totalStateAppropriation2020: 333,
     totalStateAppropriation2025: 312
   }
 }
