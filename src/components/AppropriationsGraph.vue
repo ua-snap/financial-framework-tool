@@ -55,7 +55,7 @@ export default {
           type: 'category'
         },
         yaxis: {
-          title: '$',
+          title: 'Thousand $',
           range: [10000, 20000]
         },
         legend: {
