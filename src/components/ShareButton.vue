@@ -6,7 +6,6 @@
       @click="toggleShare()"
     >{{ shareText }}</button>
     <input
-      class="share-url"
       onclick="this.select()"
       v-if="showUrl"
       v-bind:value="currentUrl">
@@ -36,8 +35,12 @@ export default {
 }
 </script>
 
-<style>
-.share-url {
+<style scoped>
+button {
+  margin-right: 5px;
+}
+
+input {
   width: 500px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <button
-      class="btn btn-primary"
+      class="btn"
       type="submit"
       v-on:click="resetDefaults"
     >Reset</button>

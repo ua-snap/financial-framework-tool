@@ -176,12 +176,6 @@
         </tr>
       </tbody>
     </table>
-
-    <reset-button
-      id="reset"
-      v-on:resetdefaults="resetDefaults"
-    ></reset-button>
-    <share-button></share-button>
   </div>
 </template>
 
@@ -265,9 +259,6 @@ export default {
   methods: {
     updated: function (item, value) {
       this.$emit('updated', item, value)
-    },
-    resetDefaults: function (item, value) {
-      this.$emit('resetdefaults')
     }
   }
 }

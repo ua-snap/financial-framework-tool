@@ -69,8 +69,15 @@
           :revenueEducationCost2020="revenueEducationCost2020"
           :revenueEducationCost2025="revenueEducationCost2025"
           v-on:updated="updated"
-          v-on:resetdefaults="resetDefaults"
         ></spreadsheet>
+        <reset-button
+          id="reset"
+          v-on:resetdefaults="resetDefaults"
+        ></reset-button>
+
+        <share-button
+          id="share"
+        ></share-button>
       </div>
       <div class="col-md-6">
         <graph
@@ -106,6 +113,8 @@
 
 <script>
 import Spreadsheet from './components/Spreadsheet'
+import ResetButton from './components/ResetButton'
+import ShareButton from './components/ShareButton'
 import Graph from './components/Graph'
 import AppropriationsGraph from './components/AppropriationsGraph'
 import _ from 'lodash'
@@ -114,6 +123,8 @@ export default {
   name: 'app',
   components: {
     Spreadsheet,
+    ResetButton,
+    ShareButton,
     Graph,
     AppropriationsGraph
   },
@@ -277,6 +288,10 @@ export default {
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700);
+
+#reset, #share {
+  display: inline;
+}
 
 * {
   font-family: Lato;
