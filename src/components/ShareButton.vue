@@ -38,6 +38,7 @@ export default {
 
 <style>
 .share-url {
+  margin-left: 5px;
   width: 500px;
 }
 </style>
