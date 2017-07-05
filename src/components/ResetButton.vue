@@ -15,6 +15,7 @@ export default {
   methods: {
     resetDefaults: function () {
       this.$emit('resetdefaults')
+      this.$router.replace('/')
     }
   }
 }
