@@ -14,11 +14,11 @@
       <tbody>
         <tr>
           <th scope="row">Student FTE</th>
-          <td>{{ studentFte2016 }}</td>
-          <td>{{ studentFte2018 }}</td>
-          <td>{{ studentFte2019 }}</td>
-          <td>{{ studentFte2020 }}</td>
-          <td>{{ studentFte2025 }}</td>
+          <td>{{ studentFte2016 | money }}</td>
+          <td>{{ studentFte2018 | money }}</td>
+          <td>{{ studentFte2019 | money }}</td>
+          <td>{{ studentFte2020 | money }}</td>
+          <td>{{ studentFte2025 | money }}</td>
         </tr>
         <tr>
           <th scope="row">% change FTE per year</th>
@@ -34,9 +34,9 @@
             ></slider-input>
           </td>
         <tr>
-          <th scope="row">Tuition and Fees per Student FTE</th>
+          <th scope="row">Tuition and Fees per Student FTE ($)</th>
           <td>
-            {{ tuitionFeesFTE2016 }}
+            {{ tuitionFeesFTE2016 | money }}
           </td>
           <td>
             <slider-input
@@ -83,7 +83,7 @@
         <tr>
           <th scope="row">Total State Appropriation (Million $)</th>
           <td>
-            {{ totalStateAppropriation2016 }}
+            {{ totalStateAppropriation2016 | money }}
           </td>
           <td>
             <slider-input
@@ -127,51 +127,51 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">State Appropriation per FTE</th>
-          <td>{{ stateAppropriationPerFTE2016 }}</td>
+          <th scope="row">State Appropriation per FTE ($)</th>
+          <td>{{ stateAppropriationPerFTE2016 | money }}</td>
           <td>
-            {{ stateAppropriationPerFTE2018 }}
+            {{ stateAppropriationPerFTE2018 | money }}
           </td>
           <td>
-            {{ stateAppropriationPerFTE2019 }}
+            {{ stateAppropriationPerFTE2019 | money }}
           </td>
           <td>
-            {{ stateAppropriationPerFTE2020 }}
+            {{ stateAppropriationPerFTE2020 | money }}
           </td>
           <td>
-            {{ stateAppropriationPerFTE2025 }}
+            {{ stateAppropriationPerFTE2025 | money }}
           </td>
         </tr>
         <tr>
           <th scope="row">Total Tuition &amp; Fees (Million $)</th>
-          <td>{{ totalTuitionFees2016 }}</td>
+          <td>{{ totalTuitionFees2016 | money }}</td>
           <td>
-            {{ totalTuitionFees2018 }}
+            {{ totalTuitionFees2018 | money }}
           </td>
           <td>
-            {{ totalTuitionFees2019 }}
+            {{ totalTuitionFees2019 | money }}
           </td>
           <td>
-            {{ totalTuitionFees2020 }}
+            {{ totalTuitionFees2020 | money }}
           </td>
           <td>
-            {{ totalTuitionFees2025 }}
+            {{ totalTuitionFees2025 | money }}
           </td>
         </tr>
         <tr>
           <th scope="row">Revenue, Educational Cost (Million $)</th>
-          <td>{{ revenueEducationCost2016 }}</td>
+          <td>{{ revenueEducationCost2016 | money }}</td>
           <td>
-            {{ revenueEducationCost2018 }}
+            {{ revenueEducationCost2018 | money }}
           </td>
           <td>
-            {{ revenueEducationCost2019 }}
+            {{ revenueEducationCost2019 | money }}
           </td>
           <td>
-            {{ revenueEducationCost2020 }}
+            {{ revenueEducationCost2020 | money }}
           </td>
           <td>
-            {{ revenueEducationCost2025 }}
+            {{ revenueEducationCost2025 | money }}
           </td>
         </tr>
       </tbody>
@@ -190,6 +190,12 @@ export default {
     SliderInput,
     ShareButton,
     ResetButton
+  },
+  filters: {
+    // Our money filter returns rounded value, with comma-grouping
+    money: function (value) {
+      return Math.round(value).toLocaleString()
+    }
   },
   props: [
     'studentFte2016',
