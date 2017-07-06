@@ -64,6 +64,12 @@ export default {
       return {
         title: 'Enrollment, Tuition & Fees, State Appropriations',
         barmode: 'stack',
+        margin: {
+          l: 60,
+          r: 60,
+          b: 60,
+          t: 60
+        },
         xaxis: {
           type: 'category'
         },
