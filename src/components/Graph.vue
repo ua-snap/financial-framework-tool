@@ -14,7 +14,7 @@ var interpolate = function (y1, y2, dx, s) {
   y1 = parseFloat(y1, 2)
   y2 = parseFloat(y2, 2)
   var x = parseInt(this)
-  return ((y2 - y1) / dx) * (x - s) + y1
+  return Math.round(((y2 - y1) / dx) * (x - s) + y1)
 }
 
 // Defined for reuse throughout the component
@@ -34,6 +34,9 @@ export default {
     'totalStateAppropriation2020',
     'totalStateAppropriation2025',
     'studentFte2016',
+    'studentFte2018',
+    'studentFte2019',
+    'studentFte2020',
     'studentFte2025'
   ],
   watch: {
@@ -81,7 +84,8 @@ export default {
           title: 'Enrollment (FTE)',
           side: 'right',
           overlaying: 'y',
-          range: [10000, 30000]
+          range: [10000, 30000],
+          hoverformat: ',.'
         },
         legend: {
           orientation: 'h',
@@ -108,17 +112,6 @@ export default {
         this[field + '2025']
       )
       return data
-    },
-    getStudentFteData: function () {
-      var t = _.invokeMap(
-        xAxisLabels,
-        interpolate,
-        this.studentFte2016,
-        this.studentFte2025,
-        9,
-        2016
-      )
-      return t
     },
     getGraphData: function () {
       return [
@@ -150,7 +143,11 @@ export default {
         },
         {
           x: xAxisLabels,
-          y: this.getStudentFteData(),
+          y: this.processData(
+            'studentFte',
+            this.studentFte2020,
+            this.studentFte2025
+          ),
           name: 'Enrollment',
           yaxis: 'y2',
           type: 'scatter',
