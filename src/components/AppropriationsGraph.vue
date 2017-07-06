@@ -50,6 +50,12 @@ export default {
     getGraphLayout: function () {
       return {
         title: 'State Appropriations per FTE',
+        margin: {
+          l: 60,
+          r: 60,
+          b: 60,
+          t: 60
+        },
         barmode: 'stack',
         xaxis: {
           type: 'category'
