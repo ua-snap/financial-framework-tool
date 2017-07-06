@@ -78,6 +78,7 @@ export default {
         },
         yaxis: {
           title: 'Million $',
+          hoverformat: '$,f6',
           range: [0, 700]
         },
         yaxis2: {
