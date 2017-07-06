@@ -34,7 +34,7 @@ export default {
     min: Number,
     max: Number,
     start: Number,
-    currvalue: Number,
+    currvalue: [Number, String],
     step: {
       type: Number,
       default: 1
@@ -72,11 +72,15 @@ export default {
   },
   methods: {
     updateValue: function (value, between) {
-      value = parseFloat(value)
+      // Parsing the value strips the decimal point from incomplete strings like
+      // "1.". The decimal needs to be retained until user is finished typing.
+      // Hence, parse the value for comparisons but save the string version.
+      var parsedValue = parseFloat(value)
+
       if (between) {
-        if (value > this.max) {
+        if (parsedValue > this.max) {
           value = this.max
-        } else if (value < this.min) {
+        } else if (parsedValue < this.min) {
           value = this.min
         }
         this.value = value
