@@ -62,6 +62,7 @@ export default {
         },
         yaxis: {
           title: 'Thousand $',
+          hoverformat: ',f6',
           range: [10000, 20000]
         },
         legend: {
