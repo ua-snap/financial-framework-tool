@@ -273,7 +273,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-table.table>tbody>tr>td {
+table.table>tbody>tr>td, table.table>thead>tr>th {
   padding: 1ex 1em;
 }
 </style>
