@@ -25,6 +25,7 @@
           <td colspan="5">
             <slider-input
               id="studentFtePercentChange"
+              class="fte-percent-change"
               :min="studentFtePercentChangeMin"
               :max="studentFtePercentChangeMax"
               :start="studentFtePercentChangeStart"
@@ -272,7 +273,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-table.table>tbody>tr>td {
+table.table>tbody>tr>td, table.table>thead>tr>th {
   padding: 1ex 1em;
 }
 </style>
