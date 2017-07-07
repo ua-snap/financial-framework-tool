@@ -219,7 +219,6 @@ export default {
       return parseFloat((parseFloat(appropriation) * 1000000 / parseFloat(fte)).toFixed(2))
     },
     computeRevenueEducationCost (tuition, appropriation) {
-      console.log(tuition, appropriation)
       return parseFloat((parseFloat(tuition) + parseFloat(appropriation)).toFixed(2))
     },
     computeTotalTuitionFees (fees, fte) {
