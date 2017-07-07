@@ -100,9 +100,17 @@ export default {
 
 <style>
 input.input {
+  margin-left: 0.5em;
   max-width: 6em;
 }
 .slider.slider-horizontal {
   max-width: 100px;
+}
+.fte-percent-change input {
+  margin: 0 1.5em 0 0;
+}
+.fte-percent-change .slider.slider-horizontal {
+  width: 200px;
+  max-width: 150px;
 }
 </style>

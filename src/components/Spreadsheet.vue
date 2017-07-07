@@ -25,6 +25,7 @@
           <td colspan="5">
             <slider-input
               id="studentFtePercentChange"
+              class="fte-percent-change"
               :min="studentFtePercentChangeMin"
               :max="studentFtePercentChangeMax"
               :start="studentFtePercentChangeStart"
