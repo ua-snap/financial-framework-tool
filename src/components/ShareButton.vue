@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     currentUrl: function () {
-      return window.location.origin + '/#' + this.$route.fullPath
+      return window.location.origin + window.location.pathname + '#' + this.$route.fullPath
     }
   },
   methods: {
