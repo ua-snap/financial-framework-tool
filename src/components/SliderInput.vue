@@ -100,8 +100,8 @@ export default {
 
 <style>
 input.input {
-  margin-left: 0.5em;
-  max-width: 6em;
+  margin-left: -0.5em;
+  max-width: 115px;
 }
 .slider.slider-horizontal {
   max-width: 100px;
