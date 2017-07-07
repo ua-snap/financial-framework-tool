@@ -209,9 +209,9 @@ export default {
     totalTuitionFees2020: function () { return this.computeTotalTuitionFees(this.tuitionFeesFTE2020, this.studentFte2020) },
     totalTuitionFees2025: function () { return this.computeTotalTuitionFees(this.tuitionFeesFTE2025, this.studentFte2025) },
 
-    revenueEducationCost2018: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2025, this.totalStateAppropriation2018) },
-    revenueEducationCost2019: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2025, this.totalStateAppropriation2019) },
-    revenueEducationCost2020: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2025, this.totalStateAppropriation2020) },
+    revenueEducationCost2018: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2018, this.totalStateAppropriation2018) },
+    revenueEducationCost2019: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2019, this.totalStateAppropriation2019) },
+    revenueEducationCost2020: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2020, this.totalStateAppropriation2020) },
     revenueEducationCost2025: function () { return this.computeRevenueEducationCost(this.totalTuitionFees2025, this.totalStateAppropriation2025) }
   },
   methods: {
@@ -219,6 +219,7 @@ export default {
       return parseFloat((parseFloat(appropriation) * 1000000 / parseFloat(fte)).toFixed(2))
     },
     computeRevenueEducationCost (tuition, appropriation) {
+      console.log(tuition, appropriation)
       return parseFloat((parseFloat(tuition) + parseFloat(appropriation)).toFixed(2))
     },
     computeTotalTuitionFees (fees, fte) {
